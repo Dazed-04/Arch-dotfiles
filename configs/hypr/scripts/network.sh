@@ -1,0 +1,1 @@
+../../../hypr_scripts/network.sh

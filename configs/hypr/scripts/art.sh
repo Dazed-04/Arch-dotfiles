@@ -1,0 +1,1 @@
+../../../hypr_scripts/art.sh
