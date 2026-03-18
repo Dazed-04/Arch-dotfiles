@@ -1,1 +1,0 @@
-../../../.dotfiles/hypr_scripts/toggleMusic.sh

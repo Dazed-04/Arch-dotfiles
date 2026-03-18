@@ -1,1 +1,0 @@
-../../../.dotfiles/hypr_scripts/testart.sh
