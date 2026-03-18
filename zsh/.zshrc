@@ -230,6 +230,8 @@ alias ppd-stop="sudo systemctl disable --now power-profiles-daemon.service"
 alias auto-start="sudo systemctl stop power-profiles-daemon.service && sudo systemctl enable --now auto-cpufreq"
 alias auto-stop="sudo systemctl disable --now auto-cpufreq"
 alias ctf-start='UID=$(id -u) GID=$(id -g) docker compose -f ~/Code/CTF/docker-compose.yml up -d'
+alias ctf-vpn='docker exec -it -u root ctf-tools openvpn --config /home/ctf/ovpn/ap-south-1-Dazed04-regular.ovpn --daemon'
+alias ctf-vpn-stop='docker exec -it -u root ctf-tools pkill openvpn'
 alias ctf-stop='docker compose -f ~/Code/CTF/docker-compose.yml down'
 alias ctf-shell='docker compose -f ~/Code/CTF/docker-compose.yml exec tools bash'
 alias ctf-logs='docker compose -f ~/Code/CTF/docker-compose.yml logs -f vpn'
