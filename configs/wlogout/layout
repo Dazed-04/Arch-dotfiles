@@ -1,0 +1,31 @@
+{
+    "label" : "lock",
+    "action" : "sleep 0.25 && hyprlock",
+    "text" : "[L]ock",
+    "keybind" : "l"
+}
+{
+    "label" : "shutdown",
+    "action" : "sleep 0.25 && systemctl poweroff",
+    "text" : "[S]hutdown",
+    "keybind" : "s"
+}
+{
+    "label" : "logout",
+    "action" : "sleep 0.25 && uwsm stop",
+    "text" : "L[o]gout",
+    "keybind" : "o"
+}
+{
+    "label" : "reboot",
+    "action" : "sleep 0.25 && systemctl reboot",
+    "text" : "[R]eboot",
+    "keybind" : "r"
+}
+{
+    "label" : "sleep",
+    "action" : "sleep 0.25 && systemctl suspend",
+    "text" : "Slee[p]",
+    "keybind" : "p"
+}
+

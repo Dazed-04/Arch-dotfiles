@@ -1,0 +1,2 @@
+@define-color foreground {{colors.on_surface.default.hex}};
+@define-color color6     {{colors.primary.default.hex}};

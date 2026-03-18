@@ -1,0 +1,19 @@
+[colors.normal]
+# Background and subtle elements
+black          = "{{colors.surface.default.hex}}"
+white          = "{{colors.on_surface.default.hex}}"
+bright_black   = "{{colors.outline.default.hex}}"
+
+# Main data colors
+# Using 'error' for Red, 'tertiary' for Yellow, 'primary' for Green
+red            = "{{colors.error.default.hex}}"
+yellow         = "{{colors.tertiary.default.hex}}"
+green          = "{{colors.primary.default.hex}}"
+cyan           = "{{colors.secondary.default.hex}}"
+blue           = "{{colors.primary_container.default.hex}}"
+
+# Accent colors
+magenta        = "{{colors.inverse_primary.default.hex}}"
+bright_red     = "{{colors.error_container.default.hex}}"
+bright_green   = "{{colors.on_primary_container.default.hex}}"
+bright_yellow  = "{{colors.on_tertiary_container.default.hex}}"

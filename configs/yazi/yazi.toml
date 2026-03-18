@@ -1,0 +1,76 @@
+##########################
+### Yazi Configuration ###
+##########################
+
+[mgr]
+sort_by = "natural"
+sort_sensitive = true
+sort_dir_first = true
+show_hidden = false
+show_symlink = false
+
+[preview]
+wrap = "yes"
+
+### Plugins ###
+[plugin]
+prepend_preloaders = [
+  { mime = "{audio,video,image}/*", run = "inspector" },
+  { mime = "application/subrip", run = "inspector" },
+  { mime = "application/postscript", run = "inspector" },
+]
+
+prepend_previewers = [
+  { mime = "{audio,video,image}/*", run = "inspector" },
+  { mime = "application/subrip", run = "inspector" },
+  { mime = "application/postscript", run = "inspector" },
+  # Archive previewer
+  { mime = "application/*zip", run = "ouch" },
+  { mime = "application/x-tar", run = "ouch" },
+  { mime = "application/x-bzip2", run = "ouch" },
+  { mime = "application/x-7z-compressed", run = "ouch" },
+  { mime = "application/x-rar", run = "ouch" },
+  { mime = "application/vnd.rar", run = "ouch" },
+  { mime = "application/x-xz", run = "ouch" },
+  { mime = "application/xz", run = "ouch" },
+  { mime = "application/x-zstd", run = "ouch" },
+  { mime = "application/zstd", run = "ouch" },
+  { mime = "application/java-archive", run = "ouch" },
+]
+
+# For opening files with application #
+
+[opener]
+
+# Uses imv to open image
+image_opener = [
+    { run = 'imv "$@"', orphan = true, desc = "Open in image" },
+]
+
+# Uses mpv to open video 
+video_opener = [
+    { run = 'mpv --autofit-larger=70%x70% --force-window=yes "$@"', orphan = true, desc = "Open Video" }
+]
+
+# Play using rmpc
+music_opener = [
+    { run = '''
+        # 1. Update MPC Queue
+        mpc clear; 
+        for f in "$@"; do mpc add "${f#$HOME/Music/}"; done; 
+        mpc play 1
+        
+        # 2. Hyprland Workspace Logic
+        ~/.config/hypr/scripts/toggleMusic.sh 
+    ''', desc = "Play and Switch to Music"}
+]
+
+[open]
+prepend_rules = [
+    { name = "*.{mp3,flac,wav,m4a,ogg,opus}", use = "music_opener" },
+    { mime = "image/*", use = "image_opener" },
+    { mime = "video/*", use = "video_opener" },
+    { mime = "audio/*", use = "music_opener" }, 
+    { name = "*.gif",   use = ["video_opener", "image_opener"] }
+]
+

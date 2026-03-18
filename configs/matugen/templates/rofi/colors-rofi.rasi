@@ -1,0 +1,16 @@
+* {
+    /* Use surface or surface-container for a neutral dark background */
+    background: {{colors.surface.default.hex}}bf;
+    
+    /* Use on-surface for the main text so it always contrasts with the background */
+    foreground: {{colors.on_surface.default.hex}};
+    
+    /* Use primary for the 'selected' bar so it stands out */
+    selected-normal-background: {{colors.primary.default.hex}};
+    
+    /* Use on-primary for text inside the selected bar so it's readable */
+    selected-active-background: {{colors.on_primary.default.hex}};
+    
+    /* Use error for alerts */
+    selected-urgent-background: {{colors.error.default.hex}};
+}

@@ -1,0 +1,72 @@
+[config]
+
+caching = false
+
+[templates.hyprcolors]
+input_path = "~/.config/matugen/templates/hypr/hyprcolor.conf"
+output_path = "~/.config/hypr/Configs/hyprcolor.conf"
+
+[templates.kitty]
+input_path = "~/.config/matugen/templates/kitty/kittycolors.conf"
+output_path = "~/.config/kitty/kittycolors.conf"
+post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.rofi] 
+input_path = "~/.config/matugen/templates/rofi/colors-rofi.rasi"
+output_path = "~/.config/rofi/colors-rofi.rasi"
+
+[templates.waybar_scripts]
+input_path = "~/.config/matugen/templates/waybar/scripts/colors.toml"
+output_path = "~/.config/waybar/scripts/colors.toml"
+
+[templates.rmpc_config]
+input_path = '~/.config/matugen/templates/rmpc/config.ron'
+output_path = '~/.config/rmpc/config.ron'
+
+[templates.rmpc_theme]
+input_path = '~/.config/matugen/templates/rmpc/theme.ron'
+output_path = '~/.config/rmpc/themes/theme.ron'
+
+[templates.gm]
+input_path = "~/.config/matugen/templates/get-music/colors.py"
+output_path = "~/.local/bin/myScripts/music/colors.py"
+
+[templates.qt5ct]
+input_path = '~/.config/matugen/templates/qt/qtct-colors.conf'
+output_path = '~/.config/qt5ct/colors/matugen.conf'
+
+[templates.qt6ct]
+input_path = '~/.config/matugen/templates/qt/qtct-colors.conf'
+output_path = '~/.config/qt6ct/colors/matugen.conf'
+
+[templates.gtk3]
+input_path = '~/.config/matugen/templates/gtk/gtk-colors.template'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark'
+
+[templates.gtk4]
+input_path = '~/.config/matugen/templates/gtk/gtk-colors.template'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.hyprlock]
+input_path = "~/.config/matugen/templates/hyprlock/hyprlock.conf"
+output_path = "~/.config/hypr/hyprlock.conf"
+
+[templates.cava]
+input_path = "~/.config/matugen/templates/cava/cava.conf"
+output_path = "~/.config/cava/config"
+post_hook = 'pkill -USR1 cava'
+
+[templates.btop]
+input_path = '~/.config/matugen/templates/btop/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+post_hook = 'pkill -SIGUSR2 btop'
+
+[templates.swaync]
+input_path = "~/.config/matugen/templates/swaync/swaync.template"
+output_path = "~/.config/swaync/colors.css"
+
+[templates.wlogout]
+input_path = '~/.config/matugen/templates/wlogout/wlogout.template'
+output_path = '~/.config/wlogout/colors.css'
+

@@ -1,0 +1,33 @@
+[general]
+framerate = 60
+autosens = 1
+bars = 0
+bar_width = 2
+bar_spacing = 1
+
+[input]
+method = fifo
+source = /tmp/mpd.fifo
+
+[output]
+# Required for rmpc to display the visualizer internally
+method = raw
+raw_target = /dev/stdout
+data_format = binary
+bit_format = 16bit
+
+[color]
+# Using Matugen to create a dynamic gradient
+gradient = 1
+gradient_count = 8
+gradient_color_1 = '#aec6ff'
+gradient_color_2 = '#2c4678'
+gradient_color_3 = '#bfc6dc'
+gradient_color_4 = '#3f4759'
+gradient_color_5 = '#dfbbde'
+gradient_color_6 = '#583e5a'
+gradient_color_7 = '#ffb4ab'
+gradient_color_8 = '#8e9099'
+
+[smoothing]
+noise_reduction = 77

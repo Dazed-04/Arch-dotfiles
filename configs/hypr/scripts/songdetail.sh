@@ -1,0 +1,1 @@
+../../../.dotfiles/hypr_scripts/songdetail.sh

@@ -1,0 +1,99 @@
+//* ................PEONY.......................*/
+
+{
+ 
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 4,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 5,
+//"margin-bottom": 5,
+"width": 1444,
+	
+"modules-left": ["hyprland/workspaces#roman", "mpris", "custom/swaync", "tray#peony"],
+  
+"modules-center": ["clock#peony"], 
+	
+"modules-right": [
+        "tray#peony",
+	"battery#peony",
+	"custom/separator#blank",
+	"mpris",
+	"custom/separator#blank",
+	"pulseaudio",
+	"custom/separator#blank",
+	"temperature",
+	"custom/separator#blank",	
+	"network#peony"],
+
+
+//M O D U L E S //
+
+"clock#peony": {
+	"interval": 60,
+	"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+	//"format": "{:%B | %a %d, %Y | %I:%M %p}",
+	"format": "{:%B | %a %d, %Y | %H:%M}",
+	"format-alt": "{:%a %b %d, %G}",
+},
+
+"wireplumber#peony": {
+	"format": "{icon} {volume}",
+	"format-muted": " Mute",
+	"on-click": "~/.config/hypr/scripts/Volume.sh --toggle",
+	"on-click-right": "pavucontrol -t 3",
+	"on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
+	"on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
+	"format-icons": ["", "", "󰕾", ""], 
+},
+		
+"network#peony": {
+	"format": "{ifname}",
+	"format-wifi": "{icon}",
+	"format-ethernet": "󰌘",
+	"format-disconnected": "󰌙", 
+	"tooltip-format": "{ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+	"format-linked": "󰈁 {ifname} (No IP)",
+	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+	"tooltip-format-ethernet": "{ifname} 󰌘",
+	"tooltip-format-disconnected": "󰌙 Disconnected",
+	"max-length": 50,
+	"format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"]
+},
+
+"battery#peony": {
+	"interval": 60,
+	"align": 0,
+	"rotate": 0,
+	//"bat": "BAT1",
+	//"adapter": "ACAD",
+	"full-at": 100,
+	"design-capacity": false,
+	"states": {
+    "good": 95,
+    "warning": 30,
+    "critical": 15
+	},
+	"format": "{icon}  {capacity}%",
+	"format-charging": " {capacity}%",
+	"format-plugged": "󱘖 {capacity}%",
+	"format-full": "{icon} Full",
+	"format-alt": "{icon} {time}",
+	"format-icons": ["", "", "", "", ""],
+	"format-time": "{H}h {M}min",
+	"tooltip": true,
+	"tooltip-format": "{timeTo} {power}w",
+	"on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
+	"on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
+},
+
+"tray#peony": {
+	"icon-size": 17,
+	"spacing": 8,
+}
+}	

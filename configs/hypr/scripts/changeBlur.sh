@@ -1,0 +1,1 @@
+../../../.dotfiles/hypr_scripts/changeBlur.sh

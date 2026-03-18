@@ -1,0 +1,136 @@
+@theme "/home/Dazed/.config/rofi/colors-rofi.rasi"
+
+configuration {
+    font: "Noto Color Emoji 14";
+    show-icons: false;
+    hover-select: true;
+    me-select-entry: "MouseSecondary";
+    me-accept-entry: "MousePrimary";
+}
+
+* {
+    background-alt: @selected-active-background;
+    selected: @selected-urgent-background;
+    active: @selected-normal-background;
+    text-color: @foreground;
+    border-color: @active;
+}
+
+window {
+    transparency: "real";
+    location: south;
+    anchor: south;
+    width: 40%;
+    border: 0px;
+    border-radius: 16px 16px 0px 0px;
+    background-color: @background;
+    cursor: default;
+    spacing: 0px;
+    y-offset: 0px;
+}
+
+mainbox {
+    padding: 10px;
+    background-color: transparent;
+    children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+    enabled: true;
+    padding: 10px;
+    margin: 0px 0px 8px 0px;
+    background-color: transparent;
+    border-radius: 12px;
+    children: [ "entry" ];
+}
+
+entry {
+    enabled: true;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px;
+    border-radius: 12px;
+    border-color: @active;
+    text-color: @active;
+    cursor: text;
+    placeholder: "Search emoji...";
+    placeholder-color: @foreground;
+}
+
+listview {
+    enabled: true;
+    columns: 5;
+    lines: 4;
+    cycle: true;
+    dynamic: true;
+    scrollbar: true;
+    layout: horizontal;
+    fixed-height: false;
+    spacing: 4px;
+    background-color: transparent;
+    border: 0px;
+}
+
+scrollbar {
+    width: 4px;
+    border: 0px;
+    handle-color: @border-color;
+    handle-width: 4px;
+    padding: 0;
+    background-color: @background-alt;
+    border-radius: 10px;
+}
+
+element {
+    enabled: true;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    spacing: 0px;
+    orientation: vertical;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected.normal {
+    background-color: transparent;
+    border: 2px;
+    border-color: @selected;
+    text-color: @selected;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element-icon {
+    background-color: transparent;
+    size: 32px;
+    cursor: inherit;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    font: "Noto Color Emoji 14";
+}
+
+message {
+    background-color: transparent;
+    border: 0px;
+}
+
+error-message {
+    padding: 12px;
+    border-radius: 16px;
+    background-color: @background-alt;
+    text-color: @background;
+}

@@ -1,0 +1,198 @@
+@theme "/home/Dazed/.config/rofi/colors-rofi.rasi"
+
+configuration {
+    font: "JetBrainsMono Nerd Font 11";
+    show-icons: false;
+    hover-select: true;
+    me-select-entry: "MouseSecondary";
+    me-accept-entry: "MousePrimary";
+    modi: "Network:~/.local/bin/myScripts/utilities/network_mode.sh,Utils:~/.local/bin/myScripts/utilities/utils_mode.sh,Media:~/.local/bin/myScripts/utilities/media_mode.sh";
+    display-Network: "󰤨 Network";
+    display-Utils: "󰧨 Utils";
+    display-Media: "󰑋 Media";
+}
+
+* {
+    background-alt: @selected-active-background;
+    selected: @selected-urgent-background;
+    active: @selected-normal-background;
+    text-color: @foreground;
+    border-color: @active;
+}
+
+window {
+    enabled: true;
+    fullscreen: false;
+    transparency: "real";
+    cursor: "default";
+    spacing: 0px;
+    border: 0px;
+    border-radius: 30px;
+    location: center;
+    anchor: center;
+    width: 50%;
+    background-color: @background;
+}
+
+mainbox {
+    padding: 15px;
+    enabled: true;
+    orientation: vertical;
+    children: [ "inputbar", "listbox" ];
+    background-color: transparent;
+}
+
+inputbar {
+    enabled: true;
+    padding: 10px 10px 150px 10px;
+    margin: 10px;
+    background-color: transparent;
+    border-radius: 25px;
+    orientation: horizontal;
+    children: [ "entry", "dummy", "mode-switcher" ];
+    background-image: url("/home/Dazed/.config/rofi/.current_wallpaper", width);
+}
+
+entry {
+    enabled: true;
+    expand: false;
+    width: 15%;
+    padding: 10px;
+    border: 0px;
+    border-radius: 12px;
+    background-color: transparent;
+    border-color: @active;
+    text-color: @active;
+    cursor: default;
+    cursor-width: 0px;
+    placeholder: "";
+    placeholder-color: inherit;
+}
+
+listbox {
+    spacing: 20px;
+    padding: 20px;
+    background-color: transparent;
+    orientation: vertical;
+    children: [ "message", "listview" ];
+}
+
+listview {
+    enabled: true;
+    columns: 2;
+    lines: 3;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    layout: vertical;
+    reverse: false;
+    fixed-height: false;
+    fixed-columns: true;
+    spacing: 10px;
+    background-color: transparent;
+    border: 0px;
+}
+
+dummy {
+    expand: true;
+    background-color: transparent;
+}
+
+mode-switcher {
+    enabled: true;
+    spacing: 10px;
+    background-color: transparent;
+}
+
+button {
+    padding: 12px 20px;
+    border: 2px;
+    border-color: @active;
+    border-radius: 12px;
+    background-color: transparent;
+    text-color: @active;
+    cursor: pointer;
+    expand: false;
+}
+
+button selected {
+    border: 2px;
+    border-color: @selected;
+    background-color: transparent;
+    text-color: @selected;
+}
+
+scrollbar {
+    width: 4px;
+    border: 0px;
+    handle-color: @border-color;
+    handle-width: 4px;
+    padding: 0;
+    background-color: @background-alt;
+    border-radius: 10px;
+}
+
+element {
+    enabled: true;
+    spacing: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element selected.normal {
+    background-color: transparent;
+    border: 2px;
+    border-color: @selected;
+    text-color: @selected;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element-icon {
+    background-color: transparent;
+    text-color: @active;
+    size: 36px;
+    cursor: inherit;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: @active;
+    cursor: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+    font: "JetBrainsMono Nerd Font 11";
+}
+
+message {
+    background-color: transparent;
+    border: 0px;
+}
+
+textbox {
+    padding: 12px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: 2px;
+    border-color: @background-alt;
+    text-color: @active;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+error-message {
+    padding: 12px;
+    border-radius: 20px;
+    background-color: @background-alt;
+    text-color: @background;
+}

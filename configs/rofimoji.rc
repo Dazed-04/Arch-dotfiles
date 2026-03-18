@@ -1,0 +1,14 @@
+action = clipboard
+max-recent = 10
+hidden-descriptions = False
+use-icons = False
+selector = rofi
+files = emojis_smileys_emotion
+files = emojis_people_body
+files = emojis_animals_nature
+files = emojis_food_drink
+files = emojis_travel_places
+files = emojis_activities
+files = emojis_objects
+files = emojis_symbols
+files = emojis_flags
