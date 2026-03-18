@@ -229,6 +229,10 @@ alias ppd-start="sudo systemctl unmask power-profiles-daemon.service && sudo sys
 alias ppd-stop="sudo systemctl disable --now power-profiles-daemon.service"
 alias auto-start="sudo systemctl stop power-profiles-daemon.service && sudo systemctl enable --now auto-cpufreq"
 alias auto-stop="sudo systemctl disable --now auto-cpufreq"
+alias ctf-start='UID=$(id -u) GID=$(id -g) docker compose -f ~/Code/CTF/docker-compose.yml up -d'
+alias ctf-stop='docker compose -f ~/Code/CTF/docker-compose.yml down'
+alias ctf-shell='docker compose -f ~/Code/CTF/docker-compose.yml exec tools bash'
+alias ctf-logs='docker compose -f ~/Code/CTF/docker-compose.yml logs -f vpn'
 
 # Fixed the path in the line below (added $HOME)
 # alias pgctl_start="pg_ctl -D $HOME/Applications/PostgreSQL_db/ -l $HOME/Applications/PostgreSQL_db/logfile start"

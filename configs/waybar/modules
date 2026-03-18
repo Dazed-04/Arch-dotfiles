@@ -372,7 +372,7 @@
   "return-type": "json",
   "interval": 5,
   "exec": "~/.config/waybar/scripts/waybar-memory.py",
-  "on-click": "btop", // Opens btop directly
+  "on-click": ""
 },
 
 "custom/cpu": {
@@ -380,7 +380,7 @@
   "return-type": "json",
   "interval": 5,
   "exec": "~/.config/waybar/scripts/waybar-cpu.py",
-  "on-click": "btop", // Opens btop directly
+  "on-click": "~/.local/bin/myScripts/utilities/btop.sh", // Opens btop directly
 },
 
 "custom/gpu": {
@@ -388,7 +388,7 @@
   "return-type": "json",
   "interval": 5,
   "exec": "~/.config/waybar/scripts/waybar-gpu.py",
-  "on-click": "btop", // Opens btop directly
+  "on-click": "~/.local/bin/myScripts/utilities/btop.sh", // Opens btop directly
 },
 
 "cpu": {
