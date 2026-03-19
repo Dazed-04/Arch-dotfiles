@@ -1,8 +1,7 @@
 #!/bin/bash
-
-if pgrep -x rofimoji >/dev/null; then
-  pkill -x rofimoji
+if pgrep -x rofi >/dev/null; then
+  pkill -x rofi
   exit 0
 fi
 
-rofimoji
+rofimoji --selector-args="-theme $HOME/.config/rofi/launcher-themes/emoji-picker.rasi"

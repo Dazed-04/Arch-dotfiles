@@ -1,7 +1,7 @@
 @theme "/home/Dazed/.config/rofi/colors-rofi.rasi"
 
 configuration {
-    font: "Noto Color Emoji 14";
+    font: "JetBrainsMono Nerd Font 8";
     show-icons: false;
     hover-select: true;
     me-select-entry: "MouseSecondary";
@@ -21,6 +21,7 @@ window {
     location: south;
     anchor: south;
     width: 40%;
+    height: 400px;
     border: 0px;
     border-radius: 16px 16px 0px 0px;
     background-color: @background;
@@ -38,7 +39,7 @@ mainbox {
 inputbar {
     enabled: true;
     padding: 10px;
-    margin: 0px 0px 8px 0px;
+    margin: 0px 0px 6px 0px;
     background-color: transparent;
     border-radius: 12px;
     children: [ "entry" ];
@@ -46,11 +47,8 @@ inputbar {
 
 entry {
     enabled: true;
-    padding: 10px;
+    padding: 10px 10px 10px 0px;
     background-color: transparent;
-    border: 2px;
-    border-radius: 12px;
-    border-color: @active;
     text-color: @active;
     cursor: text;
     placeholder: "Search emoji...";
@@ -59,14 +57,14 @@ entry {
 
 listview {
     enabled: true;
-    columns: 5;
-    lines: 4;
+    columns: 8;
+    lines: 10;
     cycle: true;
     dynamic: true;
-    scrollbar: true;
-    layout: horizontal;
+    scrollbar: false;
+    layout: vertical;
     fixed-height: false;
-    spacing: 4px;
+    spacing: 6px;
     background-color: transparent;
     border: 0px;
 }
@@ -83,7 +81,7 @@ scrollbar {
 
 element {
     enabled: true;
-    padding: 8px;
+    padding: 16px 2px;
     border-radius: 10px;
     background-color: transparent;
     cursor: pointer;
@@ -121,6 +119,7 @@ element-text {
     vertical-align: 0.5;
     horizontal-align: 0.5;
     font: "Noto Color Emoji 14";
+    expand: false;
 }
 
 message {
