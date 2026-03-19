@@ -55,7 +55,7 @@ type = 'git'
 style = 'plain'
 foreground = 'p:grey'
 background = 'transparent'
-template = ' {{ .HEAD }}{{ if .Working.Changed }} <p:red>*{{add .Working.Modified .Working.Deleted .Working.Unmerged}}</>{{ end }}{{ if .Staging.Changed }} <p:magenta>+{{add .Staging.Modified .Staging.Deleted .Staging.Unmerged}}</>{{ end }}{{ if gt .Behind 0 }} <p:cyan>⇣ </><p:yellow>{{ .Behind }}</>{{ end }}{{ if gt .Ahead 0 }} <p:cyan>⇡ </><p:yellow>{{ .Ahead }}</>{{ end }}'
+template = ' {{ .HEAD }}{{ if .Working.Changed }} <p:red>*{{add .Working.Modified .Working.Deleted .Working.Unmerged}}</>{{ end }}{{ if .Staging.Changed }} <p:magenta>+{{add .Staging.Modified .Staging.Deleted .Staging.Unmerged}}</>{{ end }}{{ if gt .Behind 0 }} <p:cyan>⇣</><p:yellow>{{ .Behind }}</>{{ end }}{{ if gt .Ahead 0 }} <p:cyan>⇡</><p:yellow>{{ .Ahead }}</>{{ end }}'
 
 [blocks.segments.options]
 branch_icon = ' '
