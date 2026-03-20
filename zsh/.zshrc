@@ -252,21 +252,8 @@ superpacman() {
 
 # Music and Video download alias
 alias gm="get-music"
+alias gv="get-video"
 
-get-video() {
-  local URL="$1"
-  local title=$(yt-dlp --get-title --no-playlist "$URL" 2>/dev/null)
-
-  # -f "bestvideo[height<=1440]..." ensures we get 2K if available, or the next best thing
-  if yt-dlp -q -f "bestvideo[height<=1440]+bestaudio/best" \
-    --merge-output-format mp4 --add-metadata --embed-thumbnail --no-playlist \
-    -o "$HOME/Videos/%(title)s.%(ext)s" "$URL" > /dev/null 2>&1; then
-    
-    echo "✅ Success: $title added to library"
-  else
-    echo "❌ Error: Failed to download video."
-  fi
-}
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
