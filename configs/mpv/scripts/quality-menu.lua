@@ -363,8 +363,10 @@ local function process_json(json)
 	for i = #json.formats, 1, -1 do
 		local format = json.formats[i]
 		if is_video(format) then
-			video_formats[#video_formats + 1] = format
-			all_formats[#all_formats + 1] = format
+			if not format.height or format.height >= 480 then
+				video_formats[#video_formats + 1] = format
+				all_formats[#all_formats + 1] = format
+			end
 		elseif is_audio(format) then
 			audio_formats[#audio_formats + 1] = format
 			all_formats[#all_formats + 1] = format

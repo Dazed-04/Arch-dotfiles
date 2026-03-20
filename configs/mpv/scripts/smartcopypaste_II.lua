@@ -119,7 +119,7 @@ local o = {
 	-----List Design Settings-----
 	list_alignment = 7, --The alignment for the list, uses numpad positions choose from 1-9 or 0 to disable. e,g.:7 top left alignment, 8 top middle alignment, 9 top right alignment.
 	text_time_type = "duration", --The time type for items on the list. Select between 'duration', 'length', 'remaining'.
-	time_seperator = " 🕒 ", --Time seperator that will be used before the saved time
+	time_seperator = "", --Time seperator that will be used before the saved time
 	list_sliced_prefix = "...\\h\\N\\N", --The text that indicates there are more items above. \\h\\N\\N is for new line.
 	list_sliced_suffix = "...", --The text that indicates there are more items below.
 	quickselect_0to9_pre_text = false, --true enables pre text for showing quickselect keybinds before the list. false to disable
@@ -129,13 +129,13 @@ local o = {
 	text_cursor_color = "ffbf7f", --Highlight color in BGR hexadecimal
 	text_cursor_scale = 50, --Font size for highlighted text in list
 	text_cursor_border = 0.7, --Black border size for highlighted text in list
-	text_highlight_pre_text = "✅ ", --Pre text for highlighted multi-select item
+	text_highlight_pre_text = ">>", --Pre text for highlighted multi-select item
 	search_color_typing = "ffffaa", --Search color when in typing mode
 	search_color_not_typing = "56ffaa", --Search color when not in typing mode and it is active
 	header_color = "56ffaa", --Header color in BGR hexadecimal
 	header_scale = 55, --Header text size for the list
 	header_border = 0.8, --Black border size for the Header of list
-	header_text = "📋 Clipboard [%cursor%/%total%]%prehighlight%%highlight%%afterhighlight%%prefilter%%filter%%afterfilter%%presort%%sort%%aftersort%%presearch%%search%%aftersearch%", --Text to be shown as header for the list
+	header_text = "Clipboard [%cursor%/%total%]%prehighlight%%highlight%%afterhighlight%%prefilter%%filter%%afterfilter%%presort%%sort%%aftersort%%presearch%%search%%aftersearch%", --Text to be shown as header for the list
 	--Available header variables: %cursor%, %total%, %highlight%, %filter%, %search%, %listduration%, %listlength%, %listremaining%
 	--User defined text that only displays if a variable is triggered: %prefilter%, %afterfilter%, %prehighlight%, %afterhighlight% %presearch%, %aftersearch%, %prelistduration%, %afterlistduration%, %prelistlength%, %afterlistlength%, %prelistremaining%, %afterlistremaining%
 	--Variables explanation: %cursor: displays the number of cursor position in list. %total: total amount of items in current list. %highlight%: total number of highlighted items.  %filter: shows the filter name, %search: shows the typed search. Example of user defined text that only displays if a variable is triggered of user: %prefilter: user defined text before showing filter, %afterfilter: user defined text after showing filter.
@@ -1118,7 +1118,8 @@ function draw_list()
 		-- example in the mpv source suggests this escape method for set_osd_ass:
 		-- https://github.com/mpv-player/mpv/blob/94677723624fb84756e65c8f1377956667244bc9/player/lua/stats.lua#L145
 		p = p:gsub("\\", "/"):gsub("{", "\\{"):gsub("^ ", "\\h")
-		osd_msg = osd_msg .. osd_color .. osd_key .. osd_index .. p
+		local item_icon = (i + 1 == list_cursor) and "● " or "○ "
+		osd_msg = osd_msg .. osd_color .. osd_key .. osd_index .. item_icon .. p
 
 		if
 			list_contents[#list_contents - i][osd_time_type]

@@ -245,6 +245,7 @@ local filename = nil
 local pos = 0
 local plen = 0
 local cursor = 0
+local first_open = true
 --table for saved media titles for later if we prefer them
 local title_table = {}
 -- table for urls and local file paths that we have requested to be resolved to titles
@@ -708,8 +709,18 @@ function showplaylist(duration)
 	if plen == 0 then
 		return
 	end
-	if not playlist_visible and settings.reset_cursor_on_open then
-		resetcursor()
+	if not playlist_visible then
+		if first_open then
+			resetcursor()
+			first_open = false
+			mp.add_timeout(0.1, function()
+				if playlist_visible then
+					draw_playlist()
+				end
+			end)
+		elseif settings.reset_cursor_on_open then
+			resetcursor()
+		end
 	end
 
 	playlist_visible = true
@@ -763,7 +774,7 @@ end
 
 function resetcursor()
 	selection = nil
-	cursor = mp.get_property_number("playlist-pos", 1)
+	cursor = mp.get_property_number("playlist-pos", 0)
 end
 
 function removefile()
