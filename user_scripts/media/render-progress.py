@@ -303,20 +303,30 @@ try:
                 sys.stdout.write("\033[6B")
 
         else:
-            # Track/pass finished — overwrite in place regardless of same_item
+            # Track/pass finished — keep live block open for video+audio multi-pass
+            # Only collapse if this is genuinely the final pass for this item
+            # We detect multi-pass by checking if a [Merger] line will follow,
+            # but since we can't predict that, we just update in place and let
+            # the merger handler or next-index transition collapse it.
             if live_block_active:
                 sys.stdout.write("\033[6A")
                 sys.stdout.write("\r\033[K" + track_line + "\r")
                 sys.stdout.write("\033[6B")
+                # Don't collapse — merger or EOF will handle it
 
-            # Only seal if this is the final pass (merging will follow for video)
-            # We seal on the final [Merger] or when a new index arrives
-            # For audio-only (music), seal immediately
             sealed_index     = current_index
             track_start_time = None
 
             if current_index < current_total:
-                sys.stdout.write("\033[3B" if not live_block_active else "")
+                elapsed_total = time.time() - global_start_time
+                sys.stdout.write("\r\033[K" + separator + "\n")
+                sys.stdout.write("\r\033[K" + total_line + "\n")
+                sys.stdout.write("\r\033[K" + separator + "\r")
+            elif current_index == current_total and not final_drawn:
+                # For music (no merger follows), draw final frame immediately.
+                # For video, merger will fire next and handle it.
+                # We defer to EOF/merger — do nothing here, let those handle it.
+                pass
 
         sys.stdout.flush()
 
@@ -325,9 +335,17 @@ try:
         final_drawn   = True
         elapsed_total = time.time() - global_start_time
 
-        # Collapse live block if still active
+        # Collapse live block if still active (music case — no merger fired)
         if live_block_active:
-            sys.stdout.write("\033[3B\033[J")
+            sys.stdout.write("\033[6A")
+            # Redraw track line as Downloaded
+            final_track = build_track_line(
+                f"{current_index:02d} - {current_title}",
+                "Downloaded", 100, "", 0, 0, tw
+            )
+            sys.stdout.write("\r\033[K" + final_track + "\r")
+            sys.stdout.write("\033[3B")
+            sys.stdout.write("\033[J")
             live_block_active = False
 
         f_total_line = build_total_line(

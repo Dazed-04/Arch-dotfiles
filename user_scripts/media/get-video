@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-RENDERER="$HOME/.local/bin/myScripts/music/render-progress.py"
+RENDERER="$HOME/.local/bin/myScripts/media/render-progress.py"
 local_video_dir="$HOME/Videos"
 output_path="$local_video_dir/%(title)s.%(ext)s"
 progress_template="%(info.playlist_index)s|%(info.n_entries)s|%(info.title)s|%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(progress.downloaded_bytes)s|%(progress.total_bytes)s"
