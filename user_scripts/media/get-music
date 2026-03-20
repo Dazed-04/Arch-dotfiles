@@ -25,8 +25,8 @@ search_and_pick() {
   local preview_script="$SESSION_DIR/preview.sh"
 
   mkdir -p "$thumb_cache"
-  : > "$ids_file"
-  : > "$thumb_urls_file"
+  : >"$ids_file"
+  : >"$thumb_urls_file"
 
   echo "🔍 Searching YouTube for: $query"
 
@@ -40,7 +40,10 @@ search_and_pick() {
     exit 1
   }
 
-  [[ -z "$raw_results" ]] && { echo "❌ No results found."; exit 1; }
+  [[ -z "$raw_results" ]] && {
+    echo "❌ No results found."
+    exit 1
+  }
 
   local entries=()
   local ids=()
@@ -53,16 +56,19 @@ search_and_pick() {
     local dur_fmt
     dur_fmt=$(echo "$duration" | awk -F. '{d=int($1); printf "%d:%02d", d/60, d%60}')
 
-    entries+=("$(printf '%02d. %-55s  %-28s  [%s]' $((i+1)) "$title" "$channel" "$dur_fmt")")
+    entries+=("$(printf '%02d. %-55s  %-28s  [%s]' $((i + 1)) "$title" "$channel" "$dur_fmt")")
     ids+=("$id")
-    echo "$id" >> "$ids_file"
-    echo "$thumb_url" >> "$thumb_urls_file"
+    echo "$id" >>"$ids_file"
+    echo "$thumb_url" >>"$thumb_urls_file"
     ((i++)) || true
-  done <<< "$raw_results"
+  done <<<"$raw_results"
 
-  [[ ${#entries[@]} -eq 0 ]] && { echo "❌ No valid results."; exit 1; }
+  [[ ${#entries[@]} -eq 0 ]] && {
+    echo "❌ No valid results."
+    exit 1
+  }
 
-  printf '%s\n' "${entries[@]}" > "$entries_file"
+  printf '%s\n' "${entries[@]}" >"$entries_file"
 
   # Pre-fetch first 5 thumbnails in background
   (
@@ -74,11 +80,11 @@ search_and_pick() {
         curl -sL "$thumb_url" -o "$cached_img" 2>/dev/null || rm -f "$cached_img"
       fi
       ((i++)) || true
-    done < "$thumb_urls_file"
+    done <"$thumb_urls_file"
   ) &
 
   # Preview script: cache hit = instant, miss = fetch on demand
-  cat > "$preview_script" << PREVIEW_EOF
+  cat >"$preview_script" <<PREVIEW_EOF
 #!/usr/bin/env bash
 line="\$1"
 idx=\$(echo "\$line" | grep -oP '^\d+' | head -1)
@@ -113,7 +119,7 @@ PREVIEW_EOF
     --preview-window="right:40%:wrap" \
     --bind="ctrl-c:abort" \
     --bind="esc:abort" \
-    < "$entries_file") || {
+    <"$entries_file") || {
     clear_kitty_images
     echo "❌ No selection made."
     exit 1
@@ -122,7 +128,10 @@ PREVIEW_EOF
   # Clear thumbnail before proceeding to download
   clear_kitty_images
 
-  [[ -z "$selected" ]] && { echo "❌ No selection made."; exit 1; }
+  [[ -z "$selected" ]] && {
+    echo "❌ No selection made."
+    exit 1
+  }
 
   local sel_idx
   sel_idx=$(echo "$selected" | grep -oP '^\d+' | head -1)
@@ -214,7 +223,10 @@ URL="${1:-}"
 if [[ -z "$URL" ]]; then
   printf "🎵 Search YouTube: "
   read -r query
-  [[ -z "$query" ]] && { echo "❌ No query provided."; exit 1; }
+  [[ -z "$query" ]] && {
+    echo "❌ No query provided."
+    exit 1
+  }
   SELECTED_ID=""
   SELECTED_URL=""
   search_and_pick "$query"

@@ -274,7 +274,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 typeset -U path
 
 # 2. Add your specific script folder
-[[ -d "$HOME/.local/bin/myScripts/music" ]] && path=("$HOME/.local/bin/myScripts/music" $path)
+[[ -d "$HOME/.local/bin/myScripts/media" ]] && path=("$HOME/.local/bin/myScripts/media" $path)
 
 # 3. Add standard bins
 [[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
