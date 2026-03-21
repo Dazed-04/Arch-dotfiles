@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-kitty --class wlctl wlctl
+
+if hyprctl clients | grep -q 'class: wlctl'; then
+  hyprctl dispatch closewindow class:wlctl
+else
+  kitty --class wlctl wlctl
+fi
