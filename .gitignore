@@ -2,3 +2,14 @@ configs/hypr/.current_wallpaper
 configs/hypr/.obs-secret
 configs/yt-x/recent.json
 configs/yt-x/saved_videos.json
+configs/Seanime/*.db
+configs/Seanime/*.db-shm
+configs/Seanime/*.db-wal
+configs/Seanime/cache/
+configs/Seanime/logs/
+configs/Seanime/assets/
+configs/Seanime/cache/transcode/
+configs/Seanime/manga/
+configs/Seanime/manga-local/
+configs/Seanime/offline/
+

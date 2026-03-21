@@ -30,12 +30,7 @@
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
-  "widgets": [
-    "mpris",
-    "title",
-    "dnd",
-    "notifications"
-  ],
+  "widgets": ["mpris", "title", "dnd", "notifications"],
   "widget-config": {
     "title": {
       "text": "NOTIFICATIONS",
@@ -47,7 +42,8 @@
     },
     "mpris": {
       "image-size": 76,
-      "image-radius": 10
+      "image-radius": 10,
+      "blacklist": ["playerctld"]
     }
   }
 }
