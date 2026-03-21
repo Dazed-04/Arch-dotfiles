@@ -103,6 +103,7 @@
 
 "mpris": {
 	"interval": 10,
+  "player": "mpd",
 	"format": "{player_icon} ",
 	"format-paused": "{status_icon}",
 	"on-click-middle": "playerctl previous",

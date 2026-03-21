@@ -1,0 +1,10 @@
+[Unit]
+Description=rmpcd MPD companion daemon
+After=mpd.service
+
+[Service]
+ExecStart=%h/.cargo/bin/rmpcd
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

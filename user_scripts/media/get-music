@@ -3,7 +3,7 @@ set -euo pipefail
 
 RENDERER="$HOME/.local/bin/myScripts/media/render-progress.py"
 local_music_dir="$HOME/Music"
-output_path="$local_music_dir/%(title)s.%(ext)s"
+output_path="$local_music_dir/%(artist,uploader)s/%(album,playlist_title,title)s/%(title)s.%(ext)s"
 playlist_args=(--no-playlist)
 progress_template="%(info.playlist_index)s|%(info.n_entries)s|%(info.title)s|%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(progress.downloaded_bytes)s|%(progress.total_bytes)s"
 
@@ -150,6 +150,7 @@ do_download() {
       -o "$output_path" "$url" \
       --newline --progress \
       --windows-filenames \
+      --parse-metadata "album:(?P<album>.+)" \
       --replace-in-metadata title "^(.+?) - (.+)$" "\2" \
       --replace-in-metadata title "(?i)\(([^)]*(Official|Lyric|Lyrics|Video|Music|4K|1080p|HD|HQ|Audio|Visualizer)[^)]*)\)" "" \
       --replace-in-metadata title "\s{2,}" " " \
@@ -186,7 +187,9 @@ ask_single_or_playlist() {
   read -r choice
   if [[ "$choice" == "2" ]]; then
     playlist_args=(--yes-playlist)
-    output_path="$local_music_dir/%(uploader)s/%(playlist_title)s/%(playlist_index)02d - %(title)s.%(ext)s"
+    output_path="$local_music_dir/%(artist,uploader)s/%(album,playlist_title,title)s/%(playlist_index&%02d - |)s%(title)s.%(ext)s"
+  else
+    output_path="$local_music_dir/%(artist,uploader)s/%(album,title)s/%(title)s.%(ext)s"
   fi
   echo""
 }
@@ -196,7 +199,7 @@ while getopts "ph" opt; do
   case "$opt" in
   p)
     playlist_args=(--yes-playlist)
-    output_path="$local_music_dir/%(uploader)s/%(playlist_title)s/%(playlist_index)02d - %(title)s.%(ext)s"
+    output_path="$local_music_dir/%(artist,uploader)s/%(album,playlist_title,title)s/%(playlist_index)02d - %(title)s.%(ext)s"
     ;;
   h)
     echo "Usage: get-music [-p] [URL or search terms]"

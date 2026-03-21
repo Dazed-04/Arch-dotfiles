@@ -2,35 +2,30 @@
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
-  address: "localhost:6600",
-  password: None,
-  enable_config_hot_reload: true,
-  theme: "theme",
-  lyrics_dir: Some("/home/Dazed/Music/lyrics"),
+  address: "127.0.0.1:6600",
+  on_song_change: ["~/.config/rmpc/notify"],
+  theme: Some("theme"),
+  cache_dir: Some("/home/Dazed/.cache/rmpc/"),
+  lyrics_dir: Some("~/Music/lyrics"),
+
   volume_step: 5,
-  max_fps: 30,
-  scrolloff: 0,
+  status_update_interval_ms: 1000,
   wrap_navigation: false,
   enable_mouse: true,
-  status_update_interval_ms: 1000,
-  select_current_song_on_change: false,
   album_art: (
     method: Auto,
-    max_size_px: (width: 1200, height: 1200),
-    disabled_protocols: ["http://", "https://"],
+    max_size_px: (width: 0, height: 0),
     vertical_align: Center,
     horizontal_align: Center,
   ),
-  lyrics: ( 
-    show_lyrics: true,
-    lyrics_scroll_offset: 5,
-    wrap: true,
-    align: Center,
-  ),
+  scrolloff: 0,
+  max_fps: 30,
   cava: (
-    framerate: 60, 
+    framerate: 60,
     autosens: true,
-    sensitivity: 130,
+    sensitivity: 100,
+    lower_cutoff_freq: 50,
+    higher_cutoff_freq: 10000,
     input: (
       method: Fifo,
       source: "/tmp/mpd.fifo",
@@ -39,46 +34,44 @@
       sample_bits: 16,
     ),
     smoothing: (
-      noise_reduction: 25,
+      noise_reduction: 50,
       monstercat: false,
-      waves: false,
+      waves: true,
     ),
-    eq: []
+    eq: [1.2, 1.1, 1.0, 1.0, 1.0, 1.0, 1.1, 1.2]
   ),
   keybinds: (
     global: {
-      "u":       Update, // update music database
-      "U":       Rescan,
       ":":       CommandMode,
-      ".":       VolumeUp,
       ",":       VolumeDown,
       "s":       Stop,
+      ".":       VolumeUp,
       "<Tab>":   NextTab,
       "<S-Tab>": PreviousTab,
       "1":       SwitchToTab("Queue"),
-      "2":       SwitchToTab("Playlists"),
-      "3":       SwitchToTab("Library"),
-      "4":       SwitchToTab("Artists"),
-      "5":       SwitchToTab("Search"),
-      "6":       SwitchToTab(""),
-      "7":       SwitchToTab(""),
-      "F":       SwitchToTab("Search"),
+      "2":       SwitchToTab("Directories"),
+      "3":       SwitchToTab("Artists"),
+      "4":       SwitchToTab("Albums"),
+      "5":       SwitchToTab("Playlists"),
+      "6":       SwitchToTab("Search"),
       "q":       Quit,
       ">":       NextTrack,
+      "p":       TogglePause,
       "<":       PreviousTrack,
       "f":       SeekForward,
-      "b":       SeekBack,
-      "p":       TogglePause,
       "z":       ToggleRepeat,
       "x":       ToggleRandom,
       "c":       ToggleConsume,
       "v":       ToggleSingle,
+      "b":       SeekBack,
       "?":       ShowHelp,
       "I":       ShowCurrentSongInfo,
       "O":       ShowOutputs,
       "P":       ShowDecoders,
+      "u":       Update,
+      "U":       Rescan,
     },
-    navigation: { // Playlists pane
+    navigation: {
       "k":         Up,
       "j":         Down,
       "h":         Left,
@@ -92,9 +85,8 @@
       "<C-h>":     PaneLeft,
       "<C-l>":     PaneRight,
       "<C-u>":     UpHalf,
-      "<C-d>":     DownHalf,
       "N":         PreviousResult,
-      "a":         Add, // add song to queue pane
+      "a":         Add,
       "A":         AddAll,
       "r":         Rename,
       "n":         NextResult,
@@ -104,89 +96,103 @@
       "G":         Bottom,
       "<CR>":      Confirm,
       "i":         FocusInput,
+      "J":         MoveDown,
+      "<C-d>":     DownHalf,
       "/":         EnterSearch,
       "<C-c>":     Close,
       "<Esc>":     Close,
-      "J":         MoveDown, // move song up in playlist
-      "K":         MoveUp, // move song down in playlist
-      "D":         Delete,  // delete a song from playlist
+      "K":         MoveUp,
+      "D":         Delete,
     },
-    queue: { // queue pane
+    queue: {
       "D":       DeleteAll,
       "<CR>":    Play,
-      "a":       AddToPlaylist, // add song to playlist from queue pane
-      "d":       Delete, // delete song from queue
+      "<C-s>":   Save,
+      "a":       AddToPlaylist,
+      "d":       Delete,
       "i":       ShowInfo,
       "C":       JumpToCurrent,
-      "<C-s>":   Save, // save current playng queue to new playlist
     },
   ),
-  // Customize Search Tab
   search: (
     case_sensitive: false,
     mode: Contains,
     tags: [
-      (value: "any",         label: "Any Tag"),
-      (value: "title",       label: "Title"),
-      (value: "album",       label: "Album"),
-      (value: "artist",      label: "Artist"),
-      (value: "albumartist", label: "Feat."),
-      (value: "filename",    label: "Filename"),
-      (value: "genre",       label: "Genre"),
+    (value: "any",         label: "Any Tag"),
+    (value: "title",       label: "Title"),
+    (value: "album",       label: "Album"),
+    (value: "artist",      label: "Artist"),
+    (value: "albumartist", label: "Album Artist"),
+    (value: "filename",    label: "Filename"),
+    (value: "genre",       label: "Genre"),
     ],
   ),
   artists: (
     album_display_mode: SplitByDate,
     album_sort_by: Date,
   ),
-  current_song: (
-    format: "{title}\n{artist}\n{album}",
-    align: Center,
-  ),
-  // Customize tabs here
-  tabs: [
+  //lyrics: (
+  //  show_lyrics: true,
+  //  lyrics_scroll_offset: 0,
+  //  wrap: true,
+  //  align: Center,
+  //),
+  layout: Split(
+    direction: Vertical,
+    panes: [
+    (pane: Pane(Header),borders:"BOTTOM", size: "3"),
+    (pane: Pane(Tabs), borders: "TOP", size: "0"), // <-------- 0 here will hide tabs pane
+    (pane: Pane(TabContent), borders: "ALL", size: "100%"),
     (
+        size: "1",
+        pane: Split(
+          direction: Horizontal,
+          borders: "NONE",
+          panes: [
+          (size: "15", pane: Pane(Empty())),
+          (size: "100%", pane: Pane(ProgressBar)),
+          (size: "15", pane: Pane(Empty())),
+          ],
+        ),
+      ),
+    ],
+  ),
+  tabs: [
+  (
       name: "Queue",
       pane: Split(
-        direction: Horizontal, 
+        direction: Horizontal,
+        borders: "NONE",
         panes: [
-          // Left Column: Art on top, Lyrics on bottom 
-          (
-            size: "30%",
+          // Left: Lyrics top, Album art bottom
+        (
+            size: "45%",
             pane: Split(
               direction: Vertical,
               panes: [
-                (
-                  size: "2%",
+              (
+                  size: "2",
                   pane: Pane(Empty()),
                 ),
-                (
-                  size: "47%", 
-                  pane: Pane(AlbumArt),
+              (
+                  size: "3",
+                  pane: Pane(Lyrics),
                 ),
-                (
-                  size: "1%",
+              (
+                  size: "1",
                   pane: Pane(Empty()),
                 ),
-                (
-                  size: "50%", 
+              (
+                  size: "100%",
                   pane: Split(
                     direction: Horizontal,
                     panes: [
                       (
-                        size: "3%",
-                        pane: Pane(Empty()),
+                        size: "100%",
+                        pane: Pane(AlbumArt),
                       ),
                       (
-                        size: "93%",
-                        borders: "ALL", 
-                        border_title: [(kind: Text(" Lyrics "), style: (fg: "#aec6ff"))],
-                        border_title_position: Top,
-                        border_title_alignment: Center,
-                        pane: Pane(Lyrics),
-                      ),
-                      (
-                        size: "4%",
+                        size: "2",
                         pane: Pane(Empty()),
                       ),
                     ],
@@ -194,28 +200,60 @@
                 ),
               ],
             ),
-          ),   
-          // Right Column: Queue on top, Cava on bottom
-          (
-            size: "70%",
+          ),
+          // Right: Queue top 70%, Cava bottom 30%
+        (
+            size: "55%",
             pane: Split(
-              direction: Vertical, 
-              borders: "ALL",
+              direction: Vertical,
               panes: [
-                (
-                  size: "50%",
+              (
+                  size: "70%",
                   pane: Split(
                     direction: Vertical,
                     panes: [
-                      (size: "2", borders: "BOTTOM", pane: Pane(QueueHeader())),
-                      (size: "100%", pane: Pane(Queue)),
+                    (size: "2", pane: Split (
+                        direction: Horizontal,
+                        panes: [
+                        (size: "6", pane: Pane(Empty())),
+                        (size: "100%", borders: "BOTTOM", pane: Pane(QueueHeader())),
+                        (size: "6", pane: Pane(Empty())),
+                        ],
+                      )),
+                    (size: "100%", pane: Pane(Queue)),
+                    (size: "1", pane: Pane(Empty())),
+                    (size: "2", pane: Split(
+                        direction: Horizontal,
+                        panes: [
+                        (size: "6", pane: Pane(Empty())),
+                        (
+                            size: "100%",
+                            borders: "TOP",
+                            border_style: (fg: "#6e738d"),
+                            border_title: [
+                            (kind: Text("  ")),
+                            (kind: Property(Status(Elapsed))),
+                            (kind: Text(" / ")),
+                            (kind: Property(Status(Duration))),
+                            (kind: Text("  · ")),
+                            (kind: Property(Status(QueueLength()))),
+                            (kind: Text(" songs / ")),
+                            (kind: Property(Status(QueueTimeTotal()))),
+                            (kind: Text("  ")),
+                            ],
+                            border_title_position: Top,
+                            border_title_alignment: Center,
+                            pane: Pane(Empty()),
+                          ),
+                        (size: "6", pane: Pane(Empty())),
+                        ],
+                      )),
                     ],
                   ),
                 ),
-                (
-                  size: "50%",
-                  borders: "TOP",
-                  pane: Pane(Cava), 
+              (
+                  size: "30%",
+                  pane: Pane(Cava),
                 ),
               ],
             ),
@@ -223,30 +261,30 @@
         ],
       ),
     ),
-    (
-      name: "Playlists",
-      pane: Split(
-        direction: Horizontal,
-        panes: [(size: "100%", borders: "ALL", pane: Pane(Playlists))],
-      ),
-    ),
-    (
-      name: "Library",
+  (
+      name: "Directories",
+      border_type: Full,
       pane: Pane(Directories),
     ),
-    (
+  (
       name: "Artists",
-      pane: Split(
-        direction: Horizontal,
-        panes: [(size: "100%", borders: "ALL", pane: Pane(Artists))],
-      ),
+      border_type: None,
+      pane: Pane(Artists),
     ),
-    (
+  (
+      name: "Albums",
+      border_type: None,
+      pane: Pane(Albums),
+    ),
+  (
+      name: "Playlists",
+      border_type: None,
+      pane: Pane(Playlists),
+    ),
+  (
       name: "Search",
-      pane: Split(
-        direction: Horizontal,
-        panes: [(size: "100%", borders: "ALL", pane: Pane(Search))],
-      ),
+      border_type: None,
+      pane: Pane(Search),
     ),
   ],
 )
