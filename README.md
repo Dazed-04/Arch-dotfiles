@@ -93,7 +93,6 @@ A non-exhaustive list of packages needed for everything to work.
 hyprland hypridle hyprlock
 waybar rofi swaync matugen
 wlogout sddm
-
 ```
 
 **Music & Audio**
