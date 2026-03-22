@@ -12,23 +12,55 @@
 
 ## Contents
 
-| Config      | Description                                                                 |
-| ----------- | --------------------------------------------------------------------------- |
-| `hyprland`  | Wayland compositor — keybinds, animations, workspace rules, scroller layout |
-| `kitty`     | Terminal emulator                                                           |
-| `nvim`      | Neovim editor config                                                        |
-| `yazi`      | Terminal file manager                                                       |
-| `rmpc`      | MPD TUI client — custom layout, theme, lyrics, cava visualizer              |
-| `mpd`       | Music Player Daemon                                                         |
-| `mpv`       | Media player                                                                |
-| `spicetify` | Spotify client theming                                                      |
-| `btop`      | Resource monitor                                                            |
-| `fastfetch` | System info fetch                                                           |
-| `matugen`   | Material You color generation                                               |
-| `mpDris`    | MPRIS bridge for MPD                                                        |
-| `ohmyposh`  | Shell prompt theme                                                          |
-| `jerry`     | Anime/media CLI tool                                                        |
-| `.zshrc`    | Zsh shell config                                                            |
+### 🖥️ Desktop Environment
+
+| Config     | Description                                                                 |
+| ---------- | --------------------------------------------------------------------------- |
+| `hyprland` | Wayland compositor — keybinds, animations, workspace rules, scroller layout |
+| `hypridle` | Idle management — dim, lock, backlight, suspend                             |
+| `hyprlock` | Lock screen                                                                 |
+| `wlogout`  | Session logout menu                                                         |
+| `sddm`     | Login manager                                                               |
+| `waybar`   | Status bar                                                                  |
+| `rofi`     | App launcher and menus                                                      |
+| `swaync`   | Notification center                                                         |
+| `matugen`  | Material You color generation                                               |
+
+### 🎵 Music & Audio
+
+| Config      | Description                                                    |
+| ----------- | -------------------------------------------------------------- |
+| `mpd`       | Music Player Daemon                                            |
+| `rmpc`      | MPD TUI client — custom layout, theme, lyrics, cava visualizer |
+| `mpDris`    | MPRIS bridge for MPD                                           |
+| `spicetify` | Spotify client theming                                         |
+
+### 🎬 Media
+
+| Config             | Description             |
+| ------------------ | ----------------------- |
+| `mpv`              | Media player            |
+| `jerry`            | Anime CLI tool          |
+| `Seanime`          | Anime WebUI             |
+| `stremio-enhanced` | Streaming client WebUI  |
+| `yt-x`             | Terminal YouTube client |
+
+### 🛠️ Terminal & Shell
+
+| Config     | Description           |
+| ---------- | --------------------- |
+| `kitty`    | Terminal emulator     |
+| `nvim`     | Neovim editor config  |
+| `yazi`     | Terminal file manager |
+| `ohmyposh` | Shell prompt theme    |
+| `.zshrc`   | Zsh shell config      |
+
+### 📊 System
+
+| Config      | Description       |
+| ----------- | ----------------- |
+| `btop`      | Resource monitor  |
+| `fastfetch` | System info fetch |
 
 ---
 
@@ -53,33 +85,54 @@ ln -s ~/.dotfiles/configs/nvim ~/.config/nvim
 
 ## Dependencies
 
-A non-exhaustive list of packages needed for everything to work:
+A non-exhaustive list of packages needed for everything to work.
+
+**Desktop Environment**
 
 ```
-hyprland hyprscroller
-kitty
-neovim
-yazi
-rmpc rmpcd mpd mpc
-mpv
-spicetify-cli
-btop
-fastfetch
+hyprland hyprscroller hypridle hyprlock
+waybar rofi swaync wlogout sddm
 matugen
-oh-my-posh
-zsh
-chafa
+```
+
+**Music & Audio**
+
+```
+mpd mpc rmpc mpdris playerctl
+spicetify-cli
 cava
+```
+
+**Media**
+
+```
+mpv jerry yt-x
+stremio-enhanced
+Seanime
+```
+
+**Terminal & Shell**
+
+```
+kitty neovim yazi
+oh-my-posh zsh
+chafa
+```
+
+**System**
+
+```
+btop fastfetch
 ```
 
 Most are available in the official Arch repos or AUR:
 
 ```bash
 # Official repos
-sudo pacman -S hyprland kitty neovim yazi mpd mpv btop fastfetch zsh chafa
+sudo pacman -S hyprland hypridle hyprlock kitty neovim yazi mpd mpv btop fastfetch zsh chafa waybar rofi sddm
 
 # AUR
-yay -S rmpc spicetify-cli matugen oh-my-posh
+yay -S hyprscroller rmpc spicetify-cli matugen oh-my-posh wlogout swaync
 ```
 
 ---
@@ -89,7 +142,6 @@ yay -S rmpc spicetify-cli matugen oh-my-posh
 - Configs are tailored to my specific setup and may need adjustments for yours
 - Some scripts reference absolute paths to `/home/Dazed/` — you'll need to update these
 - The rmpc layout uses a custom theme with cava visualizer, lyrics pane, and album art
-- Hyprland uses the `scrolling` layout on the special music workspace
 
 ---
 
