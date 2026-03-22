@@ -90,15 +90,17 @@ A non-exhaustive list of packages needed for everything to work.
 **Desktop Environment**
 
 ```
-hyprland hyprscroller hypridle hyprlock
-waybar rofi swaync wlogout sddm
-matugen
+hyprland hypridle hyprlock
+waybar rofi swaync matugen
+wlogout sddm
+
 ```
 
 **Music & Audio**
 
 ```
-mpd mpc rmpc mpdris playerctl
+mpd mpc mpdris
+rmpc playerctl
 spicetify-cli
 cava
 ```
@@ -106,9 +108,9 @@ cava
 **Media**
 
 ```
-mpv jerry yt-x
+mpv jerry
 stremio-enhanced
-Seanime
+Seanime yt-x
 ```
 
 **Terminal & Shell**
