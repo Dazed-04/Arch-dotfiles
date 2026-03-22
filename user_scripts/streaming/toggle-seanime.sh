@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-pgrep seanime || seanime &
+# toggle-seanime.sh
+if pgrep seanime >/dev/null; then
+  pkill seanime
+else
+  seanime &
+fi

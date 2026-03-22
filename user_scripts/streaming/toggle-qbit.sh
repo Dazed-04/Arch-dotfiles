@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-pgrep qbittorrent-nox || qbittorrent-nox &
+# toggle-qbit.sh
+if pgrep qbittorrent-nox >/dev/null; then
+  pkill qbittorrent-nox
+else
+  qbittorrent-nox &
+fi
