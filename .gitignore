@@ -1,7 +1,12 @@
+# hyprland ignores
 configs/hypr/.current_wallpaper
 configs/hypr/.obs-secret
+
+# yt-x ignores
 configs/yt-x/recent.json
 configs/yt-x/saved_videos.json
+
+# Seanime ignores
 configs/Seanime/*.db
 configs/Seanime/*.db-shm
 configs/Seanime/*.db-wal
@@ -13,3 +18,24 @@ configs/Seanime/manga/
 configs/Seanime/manga-local/
 configs/Seanime/offline/
 
+# Stremio ignores
+configs/stremio-enhanced/Cache/
+configs/stremio-enhanced/Code Cache/
+configs/stremio-enhanced/GPUCache/
+configs/stremio-enhanced/DawnGraphiteCache/
+configs/stremio-enhanced/DawnWebGPUCache/
+configs/stremio-enhanced/Service Worker/
+configs/stremio-enhanced/Session Storage/
+configs/stremio-enhanced/Local Storage/
+configs/stremio-enhanced/shared_proto_db/
+configs/stremio-enhanced/WebStorage/
+configs/stremio-enhanced/Shared Dictionary/
+configs/stremio-enhanced/VideoDecodeStats/
+configs/stremio-enhanced/blob_storage/
+configs/stremio-enhanced/Crashpad/
+configs/stremio-enhanced/DIPS
+configs/stremio-enhanced/Trust Tokens
+configs/stremio-enhanced/Cookies
+configs/stremio-enhanced/stremio-server.log
+configs/stremio-enhanced/Dictionaries/
+configs/stremio-enhanced/streamingserver/
