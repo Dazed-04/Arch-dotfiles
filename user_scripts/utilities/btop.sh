@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-kitty --class btop btop
+
+if hyprctl clients | grep -q 'class: btop'; then
+  hyprctl dispatch closewindow class:btop
+else
+  kitty --class btop btop
+fi
