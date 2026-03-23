@@ -42,7 +42,7 @@
 | `mpv`              | Media player            |
 | `jerry`            | Anime CLI tool          |
 | `Seanime`          | Anime WebUI             |
-| `stremio-enhanced` | Streaming client WebUI  |
+| `stremio-enhanced` | Streaming client        |
 | `yt-x`             | Terminal YouTube client |
 
 ### 🛠️ Terminal & Shell
