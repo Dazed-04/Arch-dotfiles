@@ -72,8 +72,8 @@
 		"critical": 15
 	},
 	"format": "{icon} {capacity}% |",
-	"format-charging": " {capacity}% | ",
-	"format-plugged": "󱘖 {capacity}% | ",
+	"format-charging": " {capacity}% |",
+	"format-plugged": "󱘖 {capacity}% |",
 	"format-alt-click": "click",
 	"format-full": "{icon} Full | ",
 	"format-alt": "{icon} {time} | ",
@@ -82,7 +82,7 @@
 	],
 	"format-time": "{H}h {M}min",
 	"tooltip": true,
-	"tooltip-format": "{timeTo} {power}w",
+	"tooltip-format": "{timeTo} | {power}w",
 },
 
 "actions": {
@@ -134,7 +134,7 @@
 
 "pulseaudio": {
 	"format": "{icon} {volume}% |",
-	"format-bluetooth": "{icon} 󰂰 {volume}",
+	"format-bluetooth": "<span rise='10'>{icon}</span> {volume}% |",
 	"format-muted": "󰖁 MUTED |",
 	"format-icons": {
 		"headphone": "",
@@ -155,7 +155,7 @@
 	"on-click-right": "pavucontrol -t 3",
 	"on-scroll-up": "~/.config/hypr/scripts/volume.sh --inc",
 	"on-scroll-down": "~/.config/hypr/scripts/volume.sh --dec",
-	"tooltip-format": "{icon} {desc} | {volume}%",
+	"tooltip-format": "<span rise='10'>{icon}</span> {desc} | {volume}%",
 	"smooth-scrolling-threshold": 1,
 },
 
@@ -529,13 +529,13 @@
   "format-on": "",
   "format-off": "󰂲",
   "format-disabled": "󰂲",
-  "format-connected": "",
-  "format-connected-battery": "",
+  "format-connected": "󰂰",
+  "format-connected-battery": "󰂰",
   "tooltip": true,
   "tooltip-format": "{controller_alias}  {controller_address}\n      {num_connections} connected",
-  "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{num_connections} connected\n\n{device_enumerate}",
-  "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-  "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+  "tooltip-format-connected": "{controller_alias} | {controller_address} | {num_connections} connected\n\n{device_enumerate}",
+  "tooltip-format-enumerate-connected": "{device_alias} | {device_address}",
+  "tooltip-format-enumerate-connected-battery": "{device_alias} | {device_address} | {device_battery_percentage}%",
   "on-click": "~/.local/bin/myScripts/utilities/bluetui.sh",
   "on-click-right": "blueman-manager",
 },

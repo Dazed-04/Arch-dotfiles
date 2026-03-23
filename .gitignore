@@ -5,6 +5,7 @@ configs/hypr/.obs-secret
 # yt-x ignores
 configs/yt-x/recent.json
 configs/yt-x/saved_videos.json
+configs/yt-x/custom_playlists.json
 
 # Seanime ignores
 configs/Seanime/*.db
