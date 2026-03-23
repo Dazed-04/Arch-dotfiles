@@ -3,9 +3,7 @@ configs/hypr/.current_wallpaper
 configs/hypr/.obs-secret
 
 # yt-x ignores
-configs/yt-x/recent.json
-configs/yt-x/saved_videos.json
-configs/yt-x/custom_playlists.json
+configs/yt-x/*.json
 
 # Seanime ignores
 configs/Seanime/*.db
