@@ -11,21 +11,13 @@ input_path = "~/.config/matugen/templates/kitty/kittycolors.conf"
 output_path = "~/.config/kitty/kittycolors.conf"
 post_hook = 'pkill -SIGUSR1 kitty'
 
-[templates.rofi] 
+[templates.rofi]
 input_path = "~/.config/matugen/templates/rofi/colors-rofi.rasi"
 output_path = "~/.config/rofi/colors-rofi.rasi"
 
 [templates.waybar_scripts]
 input_path = "~/.config/matugen/templates/waybar/scripts/colors.toml"
 output_path = "~/.config/waybar/scripts/colors.toml"
-
-[templates.rmpc_config]
-input_path = '~/.config/matugen/templates/rmpc/config.ron'
-output_path = '~/.config/rmpc/config.ron'
-
-[templates.rmpc_theme]
-input_path = '~/.config/matugen/templates/rmpc/theme.ron'
-output_path = '~/.config/rmpc/themes/theme.ron'
 
 [templates.gm]
 input_path = "~/.config/matugen/templates/get-music/colors.py"
@@ -69,4 +61,3 @@ output_path = "~/.config/swaync/colors.css"
 [templates.wlogout]
 input_path = '~/.config/matugen/templates/wlogout/wlogout.template'
 output_path = '~/.config/wlogout/colors.css'
-
