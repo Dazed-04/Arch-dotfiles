@@ -1,0 +1,11 @@
+
+players:
+
+    mpv:
+        ipc_path: /tmp/mpvsocket
+    monitored: [mpv]
+version: '1.0'
+
+
+fileinfo:
+    whitelist: [/home/Dazed/Media/Shows]

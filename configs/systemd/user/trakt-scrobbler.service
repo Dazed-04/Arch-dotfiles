@@ -1,0 +1,11 @@
+[Unit]
+Description=Trakt Scrobbler Service
+After=default.target
+
+[Service]
+ExecStart="/home/Dazed/.local/bin/trakts" run
+Environment="DISPLAY=:0"
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
