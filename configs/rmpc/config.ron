@@ -131,12 +131,6 @@
     album_display_mode: SplitByDate,
     album_sort_by: Date,
   ),
-  //lyrics: (
-  //  show_lyrics: true,
-  //  lyrics_scroll_offset: 0,
-  //  wrap: true,
-  //  align: Center,
-  //),
   layout: Split(
     direction: Vertical,
     panes: [
@@ -159,48 +153,55 @@
   ),
   tabs: [
   (
-      name: "Queue",
-      pane: Split(
-        direction: Horizontal,
-        borders: "NONE",
-        panes: [
-          // Left: Lyrics top, Album art bottom
+    name: "Queue",
+    pane: Split(
+      direction: Horizontal,
+      borders: "NONE",
+      panes: [
+        // Left: Lyrics top, Album art bottom
         (
-            size: "45%",
-            pane: Split(
-              direction: Vertical,
-              panes: [
+          size: "45%",
+          pane: Split(
+            direction: Vertical,
+            panes: [
               (
-                  size: "2",
-                  pane: Pane(Empty()),
+                size: "2",
+                pane: Pane(Empty()),
+              ),
+              ( 
+                size: "100%",
+                pane: Split (
+                  direction: Horizontal,
+                  panes: [
+                    (size: "1", pane: Pane(Empty())),
+                    (size: "100%", pane: Pane(Lyrics)),
+                    (size: "1", pane: Pane(Empty())),
+                  ],
                 ),
+              ),
               (
-                  size: "3",
-                  pane: Pane(Lyrics),
-                ),
+                size: "1",
+                pane: Pane(Empty()),
+              ),
               (
-                  size: "1",
-                  pane: Pane(Empty()),
+                size: "100%",
+                pane: Split(
+                  direction: Horizontal,
+                  panes: [
+                    (
+                      size: "100%",
+                      pane: Pane(AlbumArt),
+                    ),
+                    (
+                      size: "2",
+                      pane: Pane(Empty()),
+                    ),
+                  ],
                 ),
-              (
-                  size: "100%",
-                  pane: Split(
-                    direction: Horizontal,
-                    panes: [
-                      (
-                        size: "100%",
-                        pane: Pane(AlbumArt),
-                      ),
-                      (
-                        size: "2",
-                        pane: Pane(Empty()),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
           // Right: Queue top 70%, Cava bottom 30%
         (
             size: "55%",
