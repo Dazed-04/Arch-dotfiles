@@ -8,7 +8,7 @@ get_thumb_path() {
   echo "${thumbDir}/${base_name//\//_}.png"
 }
 
-# For Hyprland + swww
+# For Hyprland + awww
 
 # === CONFIGURATION ===
 # Directories
@@ -21,7 +21,7 @@ currentLink="$cacheDir/current_wallpaper"
 
 mkdir -p "$thumbDir"
 
-for cmd in rofi swww magick matugen; do
+for cmd in rofi awww magick matugen; do
   command -v "$cmd" >/dev/null || {
     notify-send -u critical "Missing dependency: $cmd"
     exit 1
@@ -33,7 +33,7 @@ FPS=60
 TYPE="any"
 DURATION=1
 BEZIER="0.4,0.2,0.4,1.0"
-SWWW_PARAMS=(--transition-fps "${FPS}" --transition-type "${TYPE}" --transition-duration "${DURATION}" --transition-bezier "${BEZIER}")
+AWWW_PARAMS=(--transition-fps "${FPS}" --transition-type "${TYPE}" --transition-duration "${DURATION}" --transition-bezier "${BEZIER}")
 
 # Thumbnail generation
 generate_thumbnail() {
@@ -115,7 +115,7 @@ executeCommand() {
   local wp="$1"
 
   # Set wallpaper
-  swww img "$wp" "${SWWW_PARAMS[@]}"
+  awww img "$wp" "${AWWW_PARAMS[@]}"
   ln -sf "$wp" "$currentLink"
   ln -sf "$wp" "$HOME/.config/rofi/.current_wallpaper"
   ln -sf "$wp" "$HOME/.config/hypr/.current_wallpaper"
