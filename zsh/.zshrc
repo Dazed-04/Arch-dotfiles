@@ -229,18 +229,19 @@ alias ppd-start="sudo systemctl unmask power-profiles-daemon.service && sudo sys
 alias ppd-stop="sudo systemctl disable --now power-profiles-daemon.service"
 alias auto-start="sudo systemctl stop power-profiles-daemon.service && sudo systemctl enable --now auto-cpufreq"
 alias auto-stop="sudo systemctl disable --now auto-cpufreq"
-alias ctf-start='UID=$(id -u) GID=$(id -g) docker compose -f ~/Code/CTF/docker-compose.yml up -d'
-alias ctf-vpn='docker exec -it -u root ctf-tools openvpn --config /home/ctf/ovpn/ap-south-1-Dazed04-regular.ovpn --daemon'
-alias ctf-vpn-stop='docker exec -it -u root ctf-tools pkill openvpn'
-alias ctf-stop='docker compose -f ~/Code/CTF/docker-compose.yml down'
-alias ctf-shell='docker compose -f ~/Code/CTF/docker-compose.yml exec tools bash'
-alias ctf-logs='docker compose -f ~/Code/CTF/docker-compose.yml logs -f vpn'
-
-# Fixed the path in the line below (added $HOME)
-# alias pgctl_start="pg_ctl -D $HOME/Applications/PostgreSQL_db/ -l $HOME/Applications/PostgreSQL_db/logfile start"
-# alias pgctl_stop="pg_ctl -D $HOME/Applications/PostgreSQL_db/ stop"
 alias ff="fastfetch"
 alias lsda="lsd -A"
+# CTF container management
+alias ctf-start='UID=$(id -u) GID=$(id -g) docker compose -f ~/Code/CTF/docker-compose.yml up -d'
+alias ctf-stop='docker compose -f ~/Code/CTF/docker-compose.yml down'
+alias ctf-shell='docker compose -f ~/Code/CTF/docker-compose.yml exec tools bash'
+alias ctf-logs='docker compose -f ~/Code/CTF/docker-compose.yml logs -f tools'
+# VPN
+alias ctf-vpn='docker exec -it -u root ctf-tools openvpn --config /home/ctf/ovpn/ap-south-1-Dazed04-regular.ovpn --daemon'
+alias ctf-vpn-stop='docker exec -u root ctf-tools pkill openvpn'
+# SOCKS5 proxy for FoxyProxy (browser → container VPN)
+alias ctf-proxy='docker exec -d ctf-tools microsocks -p 1080 && echo "SOCKS5 proxy up → set FoxyProxy to 127.0.0.1:1080"'
+alias ctf-proxy-stop='docker exec ctf-tools pkill microsocks && echo "SOCKS5 proxy stopped"'
 
 superparu() {
   command "$HOME/.local/bin/myScripts/utilities/superPackageManagers.sh" --paru
