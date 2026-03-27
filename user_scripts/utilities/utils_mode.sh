@@ -61,6 +61,7 @@ case "$1" in
   "$HOME/.local/bin/myScripts/utilities/btop.sh"
   ;;
 *"Power Saving"*)
+  pkill rofi
   pkexec powertop --auto-tune >/dev/null
   notify-send "PowerTop" "Auto-tune applied"
   ;;

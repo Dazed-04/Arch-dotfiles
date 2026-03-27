@@ -1,11 +1,20 @@
+fileinfo:
+  include_regexes:
+    episode: [".*/(?P<title>Atlanta).*(?P<year>2016).*"]
+  whitelist:
+    - /home/Dazed/Media/Shows
+  titles:
+    Atlanta: 103511
 
 players:
+  mpv:
+    ipc_path: /tmp/mpvsocket
+  monitored: [mpv]
+version: "1.0"
+search:
+  prefer_year: true
+  match_threshold: 0.95
 
-    mpv:
-        ipc_path: /tmp/mpvsocket
-    monitored: [mpv]
-version: '1.0'
-
-
-fileinfo:
-    whitelist: [/home/Dazed/Media/Shows]
+general:
+  fuzzy_threshold: 95
+  remaps_file: /home/Dazed/.local/share/trakt-scrobbler/remaps.json

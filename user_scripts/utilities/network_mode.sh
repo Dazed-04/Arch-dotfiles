@@ -25,10 +25,12 @@ case "$1" in
 *"Turn Off WiFi")
   nmcli radio wifi off
   notify-send "WiFi" "Disabled"
+  pkill rofi
   ;;
 *"Turn On WiFi")
   nmcli radio wifi on
   notify-send "WiFi" "Enabled"
+  pkill rofi
   ;;
 *"Open WiFi Manager")
   pkill rofi
@@ -37,10 +39,12 @@ case "$1" in
 *"Turn Off Bluetooth")
   bluetoothctl power off >/dev/null 2>&1
   notify-send "Bluetooth" "Disabled"
+  pkill rofi
   ;;
 *"Turn On Bluetooth")
   bluetoothctl power on >/dev/null 2>&1
   notify-send "Bluetooth" "Enabled"
+  pkill rofi
   ;;
 *"Open Bluetooth Manager")
   pkill rofi
