@@ -8,6 +8,9 @@ sort_sensitive = true
 sort_dir_first = true
 show_hidden = false
 show_symlink = false
+linemode_max_width = 400
+task_max_concurrent = 4
+scrolloff = 5
 
 [preview]
 wrap = "yes"
@@ -42,9 +45,11 @@ prepend_previewers = [
 
 [opener]
 
-# Text opener for nvim 
-text_opener = [
-  { run = 'kitty --class yazi-nvim nvim "$@"', orphan = true, desc = "Edit in Nvim" },
+text_opener = [{ run = 'nvim "$@"', block = true, desc = "Edit in Nvim" }]
+
+# Text opener for nvim
+text_opener_float = [
+  { run = 'kitty --class yazi-nvim nvim "$@"', orphan = true, desc = "Edit in Nvim-float" },
 ]
 
 # PDF opener for Zathura
@@ -83,13 +88,25 @@ prepend_rules = [
 
   # 2. Media  
   { name = "*.{mp3,flac,wav,m4a,ogg,opus}", use = "music_opener" },
-  { name = "*.gif", use = ["video_opener", "image_opener"] },
+  { name = "*.gif", use = [
+    "video_opener",
+    "image_opener",
+  ] },
   { mime = "image/*", use = "image_opener" },
   { mime = "video/*", use = "video_opener" },
   { mime = "audio/*", use = "music_opener" },
 
   # 3. Text and Configs (Fallback)
-  { mime = "text/*", use = "text_opener" },
-  { mime = "application/json", use = "text_opener" },
-  { name = "*{rc,conf,toml,yaml,yml,json,ini,bak}", use = "text_opener" },
+  { mime = "text/*", use = [
+    "text_opener",
+    "text_opener_float",
+  ] },
+  { mime = "application/json", use = [
+    "text_opener",
+    "text_opener_float",
+  ] },
+  { name = "*{rc,conf,toml,yaml,yml,json,ini,bak}", use = [
+    "text_opener",
+    "text_opener_float",
+  ] },
 ]

@@ -37,14 +37,13 @@
 
 ### 🎬 Media
 
-| Config             | Description                |
-| ------------------ | -------------------------- |
-| `mpv`              | Media player               |
-| `jerry`            | Anime CLI tool             |
-| `Seanime`          | Anime WebUI                |
-| `stremio-enhanced` | Streaming client           |
-| `trakt-scrobbler`  | Tracks history to trakt.tv |
-| `yt-x`             | Terminal YouTube client    |
+| Config             | Description             |
+| ------------------ | ----------------------- |
+| `mpv`              | Media player            |
+| `jerry`            | Anime CLI tool          |
+| `Seanime`          | Anime WebUI             |
+| `stremio-enhanced` | Streaming client        |
+| `yt-x`             | Terminal YouTube client |
 
 ### 🛠️ Terminal & Shell
 
