@@ -232,7 +232,7 @@ alias auto-stop="sudo systemctl disable --now auto-cpufreq"
 alias ff="fastfetch"
 alias lsda="lsd -A"
 # CTF container management
-alias ctf-start='UID=$(id -u) GID=$(id -g) docker compose -f ~/Code/CTF/docker-compose.yml up -d'
+alias ctf-start='docker compose -f ~/Code/CTF/docker-compose.yml up -d'
 alias ctf-stop='docker compose -f ~/Code/CTF/docker-compose.yml down'
 alias ctf-shell='docker compose -f ~/Code/CTF/docker-compose.yml exec tools bash'
 alias ctf-logs='docker compose -f ~/Code/CTF/docker-compose.yml logs -f tools'
@@ -242,6 +242,8 @@ alias ctf-vpn-stop='docker exec -u root ctf-tools pkill openvpn'
 # SOCKS5 proxy for FoxyProxy (browser → container VPN)
 alias ctf-proxy='docker exec -d ctf-tools microsocks -p 1080 && echo "SOCKS5 proxy up → set FoxyProxy to 127.0.0.1:1080"'
 alias ctf-proxy-stop='docker exec ctf-tools pkill microsocks && echo "SOCKS5 proxy stopped"'
+# Metasploit
+alias ctf-msf='docker exec -it ctf-tools bash -c "sudo service postgresql start && msfconsole"'
 
 superparu() {
   command "$HOME/.local/bin/myScripts/utilities/superPackageManagers.sh" --paru

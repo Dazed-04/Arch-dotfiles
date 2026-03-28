@@ -42,19 +42,27 @@ prepend_previewers = [
 
 [opener]
 
+# Text opener for nvim 
+text_opener = [{ run = 'nvim "$@"', block = true, desc = "Edit in Nvim" }]
+
+# PDF opener for Zathura
+pdf_opener = [{ run = 'zathura "$@"', orphan = true, desc = "View PDF" }]
+
+# PPTX to Temp PDF opener
+# pptx_opener = [
+#   { run = 'tmp_pdf="/tmp/$(basename "${1%.*}").pdf"; libreoffice --headless --convert-to pdf "$1" --outdir /tmp && zathura "$tmp_pdf"', orphan = true, desc = "View PPTX as PDF" },
+# ]
+
 # Uses imv to open image
-image_opener = [
-    { run = 'imv "$@"', orphan = true, desc = "Open in image" },
-]
+image_opener = [{ run = 'imv "$@"', orphan = true, desc = "Open in image" }]
 
 # Uses mpv to open video 
 video_opener = [
-    { run = 'mpv --autofit-larger=70%x70% --force-window=yes "$@"', orphan = true, desc = "Open Video" }
+  { run = 'mpv --autofit-larger=70%x70% --force-window=yes "$@"', orphan = true, desc = "Open Video" },
 ]
 
 # Play using rmpc
-music_opener = [
-    { run = '''
+music_opener = [{ run = '''
         # 1. Update MPC Queue
         mpc clear; 
         for f in "$@"; do mpc add "${f#$HOME/Music/}"; done; 
@@ -62,15 +70,24 @@ music_opener = [
         
         # 2. Hyprland Workspace Logic
         ~/.config/hypr/scripts/toggleMusic.sh 
-    ''', desc = "Play and Switch to Music"}
-]
+    ''', desc = "Play and Switch to Music" }]
 
 [open]
 prepend_rules = [
-    { name = "*.{mp3,flac,wav,m4a,ogg,opus}", use = "music_opener" },
-    { mime = "image/*", use = "image_opener" },
-    { mime = "video/*", use = "video_opener" },
-    { mime = "audio/*", use = "music_opener" }, 
-    { name = "*.gif",   use = ["video_opener", "image_opener"] }
-]
+  # 1. Specific Extensions
+  { name = "application/pdf", use = "pdf_opener" },
+  { name = "*.pdf", use = "pdf_opener" },
+  { name = "*.{mp3,flac,wav,m4a,ogg,opus}", use = "music_opener" },
+  { name = "*.gif", use = ["video_opener", "image_opener"] },
 
+  # 2. Mime-type Catch-alls
+  { name = "*.pptx", use = "pptx_opener" },
+  { mime = "image/*", use = "image_opener" },
+  { mime = "video/*", use = "video_opener" },
+  { mime = "audio/*", use = "music_opener" },
+
+  # 3. Text and Configs (Fallback)
+  { mime = "text/*", use = "text_opener" },
+  { mime = "application/json", use = "text_opener" },
+  { name = "*{rc,conf,toml,yaml,yml,json}", use = "text_opener" },
+]
