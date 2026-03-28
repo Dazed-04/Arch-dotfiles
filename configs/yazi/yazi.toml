@@ -43,7 +43,9 @@ prepend_previewers = [
 [opener]
 
 # Text opener for nvim 
-text_opener = [{ run = 'nvim "$@"', block = true, desc = "Edit in Nvim" }]
+text_opener = [
+  { run = 'kitty --class yazi-nvim nvim "$@"', orphan = true, desc = "Edit in Nvim" },
+]
 
 # PDF opener for Zathura
 pdf_opener = [{ run = 'zathura "$@"', orphan = true, desc = "View PDF" }]
@@ -74,14 +76,14 @@ music_opener = [{ run = '''
 
 [open]
 prepend_rules = [
-  # 1. Specific Extensions
+  # 1. Documents
+  { name = "*.pptx", use = "pptx_opener" },
   { name = "application/pdf", use = "pdf_opener" },
   { name = "*.pdf", use = "pdf_opener" },
+
+  # 2. Media  
   { name = "*.{mp3,flac,wav,m4a,ogg,opus}", use = "music_opener" },
   { name = "*.gif", use = ["video_opener", "image_opener"] },
-
-  # 2. Mime-type Catch-alls
-  { name = "*.pptx", use = "pptx_opener" },
   { mime = "image/*", use = "image_opener" },
   { mime = "video/*", use = "video_opener" },
   { mime = "audio/*", use = "music_opener" },
@@ -89,5 +91,5 @@ prepend_rules = [
   # 3. Text and Configs (Fallback)
   { mime = "text/*", use = "text_opener" },
   { mime = "application/json", use = "text_opener" },
-  { name = "*{rc,conf,toml,yaml,yml,json}", use = "text_opener" },
+  { name = "*{rc,conf,toml,yaml,yml,json,ini,bak}", use = "text_opener" },
 ]
