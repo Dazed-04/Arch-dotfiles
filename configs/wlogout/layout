@@ -6,7 +6,7 @@
 }
 {
     "label" : "shutdown",
-    "action" : "sleep 0.25 && systemctl poweroff",
+    "action" : "sleep 0.25 && uwsm stop && systemctl poweroff",
     "text" : "[S]hutdown",
     "keybind" : "s"
 }
@@ -18,7 +18,7 @@
 }
 {
     "label" : "reboot",
-    "action" : "sleep 0.25 && systemctl reboot",
+    "action" : "sleep 0.25 && uwsm stop && systemctl reboot",
     "text" : "[R]eboot",
     "keybind" : "r"
 }
