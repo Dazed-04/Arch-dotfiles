@@ -37,6 +37,7 @@
     {
       "key": "├───────────┤",
       "type": "custom",
+      "format": "---",
     },
     {
       "key": "│ {#32}󱂬 desktop {#keys}│",
@@ -62,6 +63,7 @@
     {
       "key": "├───────────┤",
       "type": "custom",
+      "format": "---",
     },
     {
       "key": "│ {#34} kernel  {#keys}│",
@@ -101,6 +103,7 @@
     {
       "key": "├───────────┤",
       "type": "custom",
+      "format": "---",
     },
     {
       "key": "│ {#32}󰏘 colors  {#keys}│",
