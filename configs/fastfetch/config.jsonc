@@ -6,7 +6,7 @@
     "type": "kitty",
     "height": 10,
     "padding": {
-      "top": 3,
+      "top": 5,
     },
   },
   "display": {
@@ -39,20 +39,20 @@
       "type": "custom",
     },
     {
-      "key": "│ {#35}󱂬 desktop {#keys}│",
+      "key": "│ {#32}󱂬 desktop {#keys}│",
       "type": "wm",
     },
     {
-      "key": "│ {#32}󰍹 display {#keys}│",
+      "key": "│ {#33}󰍹 display {#keys}│",
       "type": "display",
       "compactType": "horizontal",
     },
     {
-      "key": "│ {#33} term    {#keys}│",
+      "key": "│ {#31} term    {#keys}│",
       "type": "terminal",
     },
     {
-      "key": "│ {#31} shell   {#keys}│",
+      "key": "│ {#33} shell   {#keys}│",
       "type": "shell",
     },
     {
@@ -79,22 +79,22 @@
       "hideType": "integrated",
     },
     {
-      "key": "│ {#35}󰇄 igpu    {#keys}│",
+      "key": "│ {#34}󰇄 igpu    {#keys}│",
       "type": "gpu",
       "detectionMethod": "pci",
       "hideType": "discrete",
     },
     {
-      "key": "│ {#34} memory  {#keys}│",
+      "key": "│ {#33} memory  {#keys}│",
       "type": "memory",
     },
     {
-      "key": "│ {#33}󰉉 disk    {#keys}│",
+      "key": "│ {#31}󰉉 disk    {#keys}│",
       "type": "disk",
       "folders": "/",
     },
     {
-      "key": "│ {#31}󰩟 network {#keys}│",
+      "key": "│ {#35}󰩟 network {#keys}│",
       "type": "localip",
       "format": "{ipv4} ({ifname})",
     },
