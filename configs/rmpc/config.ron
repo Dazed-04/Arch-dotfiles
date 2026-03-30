@@ -173,9 +173,9 @@
                 pane: Split (
                   direction: Horizontal,
                   panes: [
-                    (size: "1", pane: Pane(Empty())),
+                    (size: "3", pane: Pane(Empty())),
                     (size: "100%", pane: Pane(Lyrics)),
-                    (size: "1", pane: Pane(Empty())),
+                    (size: "3", pane: Pane(Empty())),
                   ],
                 ),
               ),
@@ -236,9 +236,9 @@
                             (kind: Property(Status(Elapsed))),
                             (kind: Text(" / ")),
                             (kind: Property(Status(Duration))),
-                            (kind: Text("  · ")),
+                            (kind: Text(" · ")),
                             (kind: Property(Status(QueueLength()))),
-                            (kind: Text(" songs / ")),
+                            (kind: Text(" songs · ")),
                             (kind: Property(Status(QueueTimeTotal()))),
                             (kind: Text("  ")),
                             ],
