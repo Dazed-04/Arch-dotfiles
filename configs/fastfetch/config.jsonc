@@ -34,39 +34,59 @@
       "key": "│ {#31}󰅐 uptime  {#keys}│",
       "type": "uptime",
     },
-
     {
-      "key": "│ {#35} kernel  {#keys}│",
-      "type": "kernel",
+      "key": "├───────────┤",
+      "type": "custom",
     },
     {
-      "key": "│ {#36}󰇄 desktop {#keys}│",
-      "type": "de",
+      "key": "│ {#35}󱂬 desktop {#keys}│",
+      "type": "wm",
     },
     {
-      "key": "│ {#32} term    {#keys}│",
+      "key": "│ {#32}󰍹 display {#keys}│",
+      "type": "display",
+      "compactType": "horizontal",
+    },
+    {
+      "key": "│ {#33} term    {#keys}│",
       "type": "terminal",
     },
     {
-      "key": "│ {#33} shell   {#keys}│",
+      "key": "│ {#31} shell   {#keys}│",
       "type": "shell",
     },
     {
-      "key": "│ {#31}󰍛 cpu     {#keys}│",
+      "key": "│ {#35}󰏖 package {#keys}│",
+      "type": "packages",
+    },
+    {
+      "key": "├───────────┤",
+      "type": "custom",
+    },
+    {
+      "key": "│ {#34} kernel  {#keys}│",
+      "type": "kernel",
+    },
+    {
+      "key": "│ {#33}󰍛 cpu     {#keys}│",
       "type": "cpu",
       "showPeCoreCount": true,
     },
     {
-      "key": "│ {#35} dgpu    {#keys}│",
+      "key": "│ {#31} dgpu    {#keys}│",
       "type": "gpu",
       "detectionMethod": "pci",
       "hideType": "integrated",
     },
     {
-      "key": "│ {#32}󰇄 igpu    {#keys}│",
+      "key": "│ {#35}󰇄 igpu    {#keys}│",
       "type": "gpu",
       "detectionMethod": "pci",
       "hideType": "discrete",
+    },
+    {
+      "key": "│ {#34} memory  {#keys}│",
+      "type": "memory",
     },
     {
       "key": "│ {#33}󰉉 disk    {#keys}│",
@@ -74,11 +94,7 @@
       "folders": "/",
     },
     {
-      "key": "│ {#31} memory  {#keys}│",
-      "type": "memory",
-    },
-    {
-      "key": "│ {#35}󰩟 network {#keys}│",
+      "key": "│ {#31}󰩟 network {#keys}│",
       "type": "localip",
       "format": "{ipv4} ({ifname})",
     },
