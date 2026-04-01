@@ -38,11 +38,11 @@
 #### 🎥 Workflow Demo
 
 <p align="center">
-  <video width="100%" controls autoplay muted loop>
-    <source src="assets/workflow_demo.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+  <video src="https://raw.githubusercontent.com/Dazed-04/Arch-dotfiles/caabd522a066469ff15172132d97cc2217bcd852/assets/workflow_demo.mp4" width="100%" controls autoplay muted loop>
   </video>
 </p>
+
+---
 
 ## Contents
 
