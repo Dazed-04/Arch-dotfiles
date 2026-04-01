@@ -38,59 +38,62 @@
 #### 🎥 Workflow Demo
 
 <p align="center">
-  <video src="assets/workflow_demo.mp4" width="100%" controls muted loop></video>
+  <video width="100%" controls autoplay muted loop>
+    <source src="assets/workflow_demo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 </p>
 
 ## Contents
 
 ### 🖥️ Desktop Environment
 
-| Config     | Description                                                                 |
-| ---------- | --------------------------------------------------------------------------- |
+|   Config   |                                 Description                                 |
+| :--------: | :-------------------------------------------------------------------------: |
 | `hyprland` | Wayland compositor — keybinds, animations, workspace rules, scroller layout |
-| `hypridle` | Idle management — dim, lock, backlight, suspend                             |
-| `hyprlock` | Lock screen                                                                 |
-| `wlogout`  | Session logout menu                                                         |
-| `sddm`     | Login manager                                                               |
-| `waybar`   | Status bar                                                                  |
-| `rofi`     | App launcher and menus                                                      |
-| `swaync`   | Notification center                                                         |
-| `matugen`  | Material You color generation                                               |
+| `hypridle` |               Idle management — dim, lock, backlight, suspend               |
+| `hyprlock` |                                 Lock screen                                 |
+| `wlogout`  |                             Session logout menu                             |
+|   `sddm`   |                                Login manager                                |
+|  `waybar`  |                                 Status bar                                  |
+|   `rofi`   |                           App launcher and menus                            |
+|  `swaync`  |                             Notification center                             |
+| `matugen`  |                        Material You color generation                        |
 
 ### 🎵 Music & Audio
 
-| Config      | Description                                                    |
-| ----------- | -------------------------------------------------------------- |
-| `mpd`       | Music Player Daemon                                            |
-| `rmpc`      | MPD TUI client — custom layout, theme, lyrics, cava visualizer |
-| `mpDris`    | MPRIS bridge for MPD                                           |
-| `spicetify` | Spotify client theming                                         |
+|   Config    |                          Description                           |
+| :---------: | :------------------------------------------------------------: |
+|    `mpd`    |                      Music Player Daemon                       |
+|   `rmpc`    | MPD TUI client — custom layout, theme, lyrics, cava visualizer |
+|  `mpDris`   |                      MPRIS bridge for MPD                      |
+| `spicetify` |                     Spotify client theming                     |
 
 ### 🎬 Media
 
-| Config             | Description             |
-| ------------------ | ----------------------- |
-| `mpv`              | Media player            |
-| `jerry`            | Anime CLI tool          |
-| `Seanime`          | Anime WebUI             |
-| `stremio-enhanced` | Streaming client        |
-| `yt-x`             | Terminal YouTube client |
+|       Config       |       Description       |
+| :----------------: | :---------------------: |
+|       `mpv`        |      Media player       |
+|      `jerry`       |     Anime CLI tool      |
+|     `Seanime`      |       Anime WebUI       |
+| `stremio-enhanced` |    Streaming client     |
+|       `yt-x`       | Terminal YouTube client |
 
 ### 🛠️ Terminal & Shell
 
-| Config     | Description           |
-| ---------- | --------------------- |
-| `kitty`    | Terminal emulator     |
-| `nvim`     | Neovim editor config  |
-| `yazi`     | Terminal file manager |
-| `ohmyposh` | Shell prompt theme    |
-| `.zshrc`   | Zsh shell config      |
+|   Config   |      Description      |
+| :--------: | :-------------------: |
+|  `kitty`   |   Terminal emulator   |
+|   `nvim`   | Neovim editor config  |
+|   `yazi`   | Terminal file manager |
+| `ohmyposh` |  Shell prompt theme   |
+|  `.zshrc`  |   Zsh shell config    |
 
 ### 📊 System
 
-| Config      | Description       |
-| ----------- | ----------------- |
-| `btop`      | Resource monitor  |
+|   Config    |    Description    |
+| :---------: | :---------------: |
+|   `btop`    | Resource monitor  |
 | `fastfetch` | System info fetch |
 
 ---
