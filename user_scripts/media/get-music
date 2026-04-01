@@ -28,7 +28,7 @@ search_and_pick() {
   : >"$ids_file"
   : >"$thumb_urls_file"
 
-  echo "🔍 Searching YouTube for: $query"
+  echo "Searching YouTube for: $query"
 
   # Single fast request — gets everything we need
   local raw_results
@@ -143,9 +143,8 @@ PREVIEW_EOF
 
 do_download() {
   local url="$1"
-
   if [[ -t 1 ]]; then
-    yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata \
+    stdbuf -oL -eL yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata \
       --embed-thumbnail "${playlist_args[@]}" \
       -o "$output_path" "$url" \
       --newline --progress \
@@ -157,8 +156,9 @@ do_download() {
       --replace-in-metadata title "^\s+|\s+$" "" \
       --progress-template "$progress_template" \
       --ignore-config --no-warnings |
-      python3 -u "$RENDERER"
-    status=${PIPESTATUS[1]}
+      python3 -u "$RENDERER" || true
+
+    status=${PIPESTATUS[0]}
   else
     echo "📡 Non-interactive detected. Streaming raw logs..."
     yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata \
@@ -181,9 +181,9 @@ do_download() {
 
 ask_single_or_playlist() {
   echo ""
-  echo "  [1] Download this track only"
-  echo "  [2] Download full playlist (if available)"
-  printf "  Choice [1/2]: "
+  echo "[1] Download this track only"
+  echo "[2] Download full playlist (if available)"
+  printf "Choice [1/2]: "
   read -r choice
   if [[ "$choice" == "2" ]]; then
     playlist_args=(--yes-playlist)
@@ -225,7 +225,7 @@ echo ""
 URL="${1:-}"
 
 if [[ -z "$URL" ]]; then
-  printf "🎵 Search YouTube: "
+  printf "Search YouTube: "
   read -r query
   [[ -z "$query" ]] && {
     echo "❌ No query provided."

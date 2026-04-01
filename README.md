@@ -6,8 +6,32 @@
 
 ## Screenshot
 
-<!-- Add a screenshot of your setup here -->
+📸 Showcase
 
+<p align="center">
+<img src="assets/main_desktop.png" alt="Main Desktop" width="100%">
+
+<em>Main Desktop: Hyprland + Waybar + Matugen</em>
+
+</p>
+🚀 App Launcher
+
+<p align="center">
+<img src="assets/rofi_launcher.png" alt="Rofi App Launcher" width="80%">
+
+<em>Custom Rofi launcher with dynamic Material You header</em>
+
+</p>
+🛠️ Control Center & Utilities
+Network & BT System Utils
+<img src="assets/menu_network.png" width="450"> <img src="assets/menu_utils.png" width="450">
+Media Controls SwayNC Notifications
+<img src="assets/menu_media.png" width="450"> <img src="assets/swaync_overlay.png" width="450">
+🎥 Workflow Demo
+
+<p align="center">
+<video src="PASTE_GITHUB_VIDEO_URL_HERE" width="100%" controls muted loop></video>
+</p>
 ---
 
 ## Contents
