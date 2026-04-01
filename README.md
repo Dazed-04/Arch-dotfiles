@@ -38,7 +38,7 @@
 #### 🎥 Workflow Demo
 
 <p align="center">
-  <video src="https://raw.githubusercontent.com/Dazed-04/Arch-dotfiles/caabd522a066469ff15172132d97cc2217bcd852/assets/workflow_demo.mp4" width="100%" controls autoplay muted loop>
+  <video src="https://github.com/user-attachments/assets/d835f002-afb5-4d43-8a6a-89781cc0aff1" width="100%" controls autoplay muted loop>
   </video>
 </p>
 
