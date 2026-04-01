@@ -38,7 +38,7 @@
 #### 🎥 Workflow Demo
 
 <p align="center">
-  <video src="PASTE_GITHUB_VIDEO_URL_HERE" width="100%" controls muted loop></video>
+  <video src="assets/workflow_demo.mp4" width="100%" controls muted loop></video>
 </p>
 
 ## Contents
