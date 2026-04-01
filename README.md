@@ -11,7 +11,7 @@
 <p align="center">
   <img src="assets/main_desktop.png" alt="Main Desktop" width="100%">
   <br>
-  <em>Main Desktop: Hyprland + Waybar + Matugen</em>
+  <em>Hyprland + Waybar + Matugen</em>
 </p>
 
 ---
