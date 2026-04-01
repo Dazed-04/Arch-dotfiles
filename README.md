@@ -167,7 +167,7 @@ Most are available in the official Arch repos or AUR:
 sudo pacman -S hyprland hypridle hyprlock kitty neovim yazi mpd mpv btop fastfetch zsh chafa waybar rofi sddm
 
 # AUR
-yay -S hyprscroller rmpc spicetify-cli matugen oh-my-posh wlogout swaync
+yay -S rmpc spicetify-cli matugen oh-my-posh wlogout swaync
 ```
 
 ---
