@@ -38,3 +38,7 @@ configs/stremio-enhanced/Cookies
 configs/stremio-enhanced/stremio-server.log
 configs/stremio-enhanced/Dictionaries/
 configs/stremio-enhanced/streamingserver/
+
+# Waybar ignores 
+configs/waybar/style/*
+!configs/waybar/style/[Dark] Purpl.css
