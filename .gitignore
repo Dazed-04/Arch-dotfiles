@@ -40,5 +40,7 @@ configs/stremio-enhanced/Dictionaries/
 configs/stremio-enhanced/streamingserver/
 
 # Waybar ignores 
+configs/waybar/configs/*
+!configs/waybar/configs/[Top] wallust_new
 configs/waybar/style/*
 !configs/waybar/style/[Dark] Purpl.css
