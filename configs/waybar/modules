@@ -220,8 +220,7 @@
 	"interval": 86400, // once every day
 	"tooltip": true,
 	"on-click": "pkill rofi || rofi -show drun -show-icons -modi drun,filebrowser,window",
-	"on-click-middle": "~/.local/bin/myScripts/wallpaperRelated/wallpaperSelect.sh",
-	"on-click-right": "~/.config/hypr/scripts/waybarLayout.sh",
+	"on-click-right": "~/.local/bin/myScripts/wallpaperRelated/wallpaperSelect.sh",
 },
 
 // This is a custom cava visualizer
