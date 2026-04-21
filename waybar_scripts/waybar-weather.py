@@ -20,20 +20,20 @@ SOLID_LINE = "─" * 18
 # The target length for the prefix is 14 characters.
 # "28 Wednesday" is exactly 12 chars. We add 2 spaces to reach 14.
 DAYS_FIXED = {
-    0: "Monday          ",
+    0: "Monday           ",
     1: "Tuesday           ",
     2: "Wednesday     ",
     3: "Thursday         ",
     4: "Friday              ",
     5: "Saturday         ",
-    6: "Sunday           ",
+    6: "Sunday            ",
 }
 
 # These are exactly 14 characters wide.
 TOMORROW_FIXED = {
     7: "󰖜  Morning     ",
     12: "󰖙  Midday       ",
-    17: "󰖚  Arvo           ",
+    17: "󰖚  Arvo            ",
     21: "󰖔  Evening      ",
 }
 
