@@ -1,19 +1,21 @@
+local colors = require("Configs.hyprcolor")
+
 hl.config({
-	general({
+	general = {
 		gaps_in = 5,
 		gaps_out = 10,
 		border_size = 2,
 
 		col = {
-			active_border = { colors = { active_border, "rgba(00ff99ee)" }, angle = 45 },
-			inactive_border = inactive_border,
+			active_border = { colors = { colors.active_border, "rgba(00ff99ee)" }, angle = 45 },
+			inactive_border = colors.inactive_border,
 		},
 
 		resize_on_border = false,
 		allow_tearing = false,
 
 		layout = "dwindle",
-	}),
+	},
 
 	decoration = {
 		rounding = 2,
@@ -82,7 +84,6 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 
 hl.config({
 	dwindle = {
-		pseudotile = false,
 		preserve_split = true,
 		force_split = 0,
 	},
@@ -107,10 +108,9 @@ hl.config({
 ----------------
 
 hl.config({
-	misc({
+	misc = {
 		force_default_wallpaper = 0,
 		disable_hyprland_logo = true,
-		vfr = true,
 		vrr = 2,
-	}),
+	},
 })

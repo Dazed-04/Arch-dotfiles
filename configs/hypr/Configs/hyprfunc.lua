@@ -17,9 +17,9 @@ hl.monitor({
 -- See https://wiki.hypr.land/Configuring/Keywords/
 
 -- Set programs that you use
-local terminal = "kitty"
-local fileManager = "thunar"
-local menu = "bash $HOME/.local/bin/myScripts/utilities/menu_launcher.sh"
+terminal = "kitty"
+fileManager = "thunar"
+menu = "bash $HOME/.local/bin/myScripts/utilities/menu_launcher.sh"
 
 -----------------
 --- AUTOSTART ---
@@ -29,7 +29,7 @@ local menu = "bash $HOME/.local/bin/myScripts/utilities/menu_launcher.sh"
 -- Or execute your favorite apps at launch like this:
 
 hl.on("hyprland.start", function()
-	hl.exec_cmd("uwsm app -- aww-daemon")
+	hl.exec_cmd("uwsm app -- awww-daemon")
 	hl.exec_cmd("uwsm app -- wl-paste --type text --watch cliphist store") -- Stores only text data
 	hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store") -- Stores only image data
 	hl.exec_cmd("uwsm app -- waybar")

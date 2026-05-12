@@ -19,16 +19,16 @@
 -- require("myColors")
 
 -- For using template colors
-require("$HOME/.config/hypr/Configs/hyprcolor.conf")
+require("Configs.hyprcolor")
 
 -- Functionality settings
-require("$HOME/.config/hypr/Configs/hyprfunc.conf")
+require("Configs.hyprfunc")
 
 -- Decoration/Animation settings
-require("$HOME/.config/hypr/Configs/hyprdeco.conf")
+require("Configs.hyprdeco")
 
 -- Keybinds
-require("$HOME/.config/hypr/Configs/hyprbinds.conf")
+require("Configs.hyprbinds")
 
--- Window and Layerrules
-require("$HOME/.config/hypr/Configs/hyprwinlayrules.conf")
+-- Window and Layer rules
+require("Configs.hyprwinlayrules")

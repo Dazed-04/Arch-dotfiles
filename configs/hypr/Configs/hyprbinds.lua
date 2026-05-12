@@ -5,17 +5,17 @@
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal or "kitty"))
 local closeWindowBind = hl.bind(mainMod .. " + K", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_raw(menu))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + F", hl.dsp.window.resize({ 1200, 800 }))
+hl.bind(mainMod .. " + F", hl.dsp.window.resize({ x = 1200, y = 800 }))
 hl.bind(mainMod .. " + F", hl.dsp.window.center())
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ "fullscreen", "toggle" }))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(hyprlock))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + R", hl.dsp.exec_raw("bash $HOME/.config/hypr/scripts/toggleRefreshRate.sh"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_raw("bash $HOME/.local/bin/myScripts/utilities/emoji_launcher.sh"))
@@ -25,7 +25,7 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_raw("bash $HOME/.local/bin/myScripts/clip
 -- For qbit, seanime and stremio
 hl.bind(mainMod .. " + A", hl.dsp.exec_raw("bash $HOME/.local/bin/myScripts/streaming/seanime.sh"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_raw("bash $HOME/.local/bin/myScripts/streaming/qbittorrent.sh"))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(stremio - enhanced))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("stremio-enhanced"))
 
 -- Open wlogout menu
 hl.bind("ALT + F4", hl.dsp.exec_raw("bash $HOME/.local/bin/myScripts/wlogout/wlogout.sh"))
@@ -35,19 +35,19 @@ hl.bind(mainMod .. " + SHIFT + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.focus({ direction = "down" }))
-hl.bind(mainMod .. " + Tab", hl.dsp.window.cyclenext())
+hl.bind(mainMod .. " + Tab", hl.dsp.window.cycle_next({}))
 
 -- Move windows
-hl.bind(mainMod .. " + Ctrl + H", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mainMod .. " + Ctrl + L", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mainMod .. " + Ctrl + K", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mainMod .. " + Ctrl + J", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.move({ direction = "down" }))
 
 -- Resize windows
-hl.bind(mainMod .. " + ALT + H", hl.dsp.window.resize({ -15, 0, "true" }))
-hl.bind(mainMod .. " + ALT + L", hl.dsp.window.resize({ 15, 0, "true" }))
-hl.bind(mainMod .. " + ALT + K", hl.dsp.window.resize({ 0, -15, "true" }))
-hl.bind(mainMod .. " + ALT + J", hl.dsp.window.resize({ 0, 15, "true" }))
+hl.bind(mainMod .. " + ALT + H", hl.dsp.window.resize({ x = -15, y = 0, "true" }))
+hl.bind(mainMod .. " + ALT + L", hl.dsp.window.resize({ x = 15, y = 0, "true" }))
+hl.bind(mainMod .. " + ALT + K", hl.dsp.window.resize({ x = 0, y = -15, "true" }))
+hl.bind(mainMod .. " + ALT + J", hl.dsp.window.resize({ x = 0, y = 15, "true" }))
 
 -- Switch focus on windows in Column
 hl.bind(mainMod .. " + period", hl.dsp.layout("move +col"))
