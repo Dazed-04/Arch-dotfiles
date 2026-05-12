@@ -44,7 +44,6 @@ prepend_previewers = [
 # For opening files with application #
 
 [opener]
-
 text_opener = [{ run = 'nvim "$@"', block = true, desc = "Edit in Nvim" }]
 
 # Text opener for nvim
@@ -54,11 +53,6 @@ text_opener_float = [
 
 # PDF opener for Zathura
 pdf_opener = [{ run = 'zathura "$@"', orphan = true, desc = "View PDF" }]
-
-# PPTX to Temp PDF opener
-# pptx_opener = [
-#   { run = 'tmp_pdf="/tmp/$(basename "${1%.*}").pdf"; libreoffice --headless --convert-to pdf "$1" --outdir /tmp && zathura "$tmp_pdf"', orphan = true, desc = "View PPTX as PDF" },
-# ]
 
 # Uses imv to open image
 image_opener = [{ run = 'imv "$@"', orphan = true, desc = "Open in image" }]
@@ -82,13 +76,12 @@ music_opener = [{ run = '''
 [open]
 prepend_rules = [
   # 1. Documents
-  { name = "*.pptx", use = "pptx_opener" },
-  { name = "application/pdf", use = "pdf_opener" },
-  { name = "*.pdf", use = "pdf_opener" },
+  { mime = "application/pdf", use = "pdf_opener" },
+  { url = "*.pdf", use = "pdf_opener" },
 
   # 2. Media  
-  { name = "*.{mp3,flac,wav,m4a,ogg,opus}", use = "music_opener" },
-  { name = "*.gif", use = [
+  { url = "*.{mp3,flac,wav,m4a,ogg,opus}", use = "music_opener" },
+  { url = "*.gif", use = [
     "video_opener",
     "image_opener",
   ] },
@@ -105,7 +98,7 @@ prepend_rules = [
     "text_opener",
     "text_opener_float",
   ] },
-  { name = "*{rc,conf,toml,yaml,yml,json,ini,bak}", use = [
+  { url = "*{rc,conf,toml,yaml,yml,json,ini,bak}", use = [
     "text_opener",
     "text_opener_float",
   ] },
