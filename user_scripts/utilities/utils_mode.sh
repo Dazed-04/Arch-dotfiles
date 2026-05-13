@@ -32,7 +32,10 @@ case "$1" in
   ;;
 *"Night Light"*)
   pkill rofi
-  hyprctl dispatch exec "$HOME/.config/hypr/scripts/nightlight.sh"
+  sleep 0.2
+  env | grep -E "WAYLAND|XDG|HYPR" >>/tmp/nl-debug.log
+  bash "$HOME/.config/hypr/scripts/nightlight.sh" &
+  disown
   ;;
 *"Waybar"*)
   if pgrep -x waybar >/dev/null; then

@@ -20,6 +20,7 @@ hl.monitor({
 terminal = "kitty"
 fileManager = "thunar"
 menu = "bash $HOME/.local/bin/myScripts/utilities/menu_launcher.sh"
+music = "bash $HOME/.config/hypr/scripts/toggleMusic.sh"
 
 -----------------
 --- AUTOSTART ---
@@ -82,20 +83,18 @@ hl.gesture({
 
 hl.gesture({
 	fingers = 3,
-	direction = "right",
-	action = "workspace",
-})
-
-hl.gesture({
-	fingers = 3,
 	direction = "up",
-	action = "workspace",
+	action = function()
+		hl.exec_cmd(menu)
+	end,
 })
 
 hl.gesture({
 	fingers = 3,
 	direction = "down",
-	action = "workspace",
+	action = function()
+		hl.exec_cmd(music)
+	end,
 })
 
 --gesture = 3, left, dispatcher, workspace, e+1

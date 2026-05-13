@@ -3,6 +3,7 @@
 -------------------
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local music = "bash $HOME/.config/hypr/scripts/toggleMusic.sh"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal or "kitty"))
@@ -89,6 +90,7 @@ end
 --}
 
 -- Special workspace for music
+hl.bind(mainMod .. " + N", hl.dsp.exec_raw(music))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.window.move({ workspace = "special:music" }))
 
 -- Special workspace for scratchpad

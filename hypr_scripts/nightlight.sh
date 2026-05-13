@@ -35,5 +35,6 @@ esac
 
 pkill hyprsunset 2>/dev/null
 sleep 0.1
-hyprsunset -t "$t" &
+nohup hyprsunset -t "$t" >/dev/null 2>&1 &
+disown
 notify-send "Night Light" "Temperature set to ${t}K"

@@ -15,7 +15,7 @@ case "$4" in
   sudo -u "$USER_NAME" \
     HYPRLAND_INSTANCE_SIGNATURE="$SIG" \
     XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
-    /usr/bin/hyprctl keyword monitor "eDP-1,1920x1080@144,auto,1"
+    /usr/bin/hyprctl eval "hl.monitor({ output = 'eDP-1', mode = '1920x1080@144', position = 'auto', scale = 1 })"
   sudo -u "$USER_NAME" \
     DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus" \
     /usr/bin/notify-send -e -a "refresh-script" \
@@ -28,7 +28,7 @@ case "$4" in
   sudo -u "$USER_NAME" \
     HYPRLAND_INSTANCE_SIGNATURE="$SIG" \
     XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
-    /usr/bin/hyprctl keyword monitor "eDP-1,1920x1080@60,auto,1"
+    /usr/bin/hyprctl eval "hl.monitor({ output = 'eDP-1', mode = '1920x1080@60', position = 'auto', scale = 1 })"
   sudo -u "$USER_NAME" \
     DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus" \
     /usr/bin/notify-send -e -a "refresh-script" \

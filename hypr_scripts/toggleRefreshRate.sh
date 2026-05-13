@@ -7,7 +7,7 @@ RES="1920x1080"
 CURRENT_RATE=$(hyprctl monitors -j | jq -r ".[] | select(.name == \"$MONITOR\") | .refreshRate | floor")
 
 if [ "$CURRENT_RATE" -ge 140 ]; then
-  hyprctl keyword monitor "$MONITOR,$RES@60,auto,1"
+  hyprctl eval "hl.monitor({ output = '$MONITOR', mode = '${RES}@60', position = 'auto', scale = 1 })"
   notify-send -e \
     -h string:x-canonical-private-synchronous:refresh_notif \
     -u low \
@@ -15,7 +15,7 @@ if [ "$CURRENT_RATE" -ge 140 ]; then
     -t 3500 \
     "Display" "Switched to 60Hz (Battery Saver)"
 else
-  hyprctl keyword monitor "$MONITOR,$RES@144,auto,1"
+  hyprctl eval "hl.monitor({ output = '$MONITOR', mode = '${RES}@144', position = 'auto', scale = 1 })"
   notify-send -e \
     -h string:x-canonical-private-synchronous:refresh_notif \
     -u low \
