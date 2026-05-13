@@ -4,17 +4,19 @@
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local music = "bash $HOME/.config/hypr/scripts/toggleMusic.sh"
+local blur = "bash $HOME/.config/hypr/scripts/changeBlur.sh"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal or "kitty"))
 local closeWindowBind = hl.bind(mainMod .. " + K", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_raw(menu))
+hl.bind(mainMod .. " + Return", hl.dsp.exec_raw(blur))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + F", hl.dsp.window.resize({ x = 1200, y = 800 }))
-hl.bind(mainMod .. " + F", hl.dsp.window.center())
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ "fullscreen", "toggle" }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.resize({ x = 1200, y = 800 }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.center())
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ "fullscreen", "toggle" }))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
@@ -45,10 +47,10 @@ hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.move({ direction = "down" }))
 
 -- Resize windows
-hl.bind(mainMod .. " + ALT + H", hl.dsp.window.resize({ x = -15, y = 0, "true" }))
-hl.bind(mainMod .. " + ALT + L", hl.dsp.window.resize({ x = 15, y = 0, "true" }))
-hl.bind(mainMod .. " + ALT + K", hl.dsp.window.resize({ x = 0, y = -15, "true" }))
-hl.bind(mainMod .. " + ALT + J", hl.dsp.window.resize({ x = 0, y = 15, "true" }))
+hl.bind(mainMod .. " + ALT + H", hl.dsp.window.resize({ x = -15, y = 0, relative = "true" }), { repeating = true })
+hl.bind(mainMod .. " + ALT + L", hl.dsp.window.resize({ x = 15, y = 0, relative = "true" }), { repeating = true })
+hl.bind(mainMod .. " + ALT + K", hl.dsp.window.resize({ x = 0, y = -15, relative = "true" }), { repeating = true })
+hl.bind(mainMod .. " + ALT + J", hl.dsp.window.resize({ x = 0, y = 15, relative = "true" }), { repeating = true })
 
 -- Switch focus on windows in Column
 hl.bind(mainMod .. " + period", hl.dsp.layout("move +col"))
@@ -59,7 +61,7 @@ hl.bind(mainMod .. " + SHIFT + period", hl.dsp.layout("swapcol r"))
 hl.bind(mainMod .. " + SHIFT + comma", hl.dsp.layout("swapcol l"))
 
 -- Center current window
-hl.bind(mainMod .. " + C", hl.dsp.window.center())
+hl.bind(mainMod .. " + C", hl.dsp.layout("fit active"))
 
 -- Open Wallpaper selector
 hl.bind(mainMod .. " + W", hl.dsp.exec_raw("bash $HOME/.local/bin/myScripts/wallpaperRelated/wallpaperSelect.sh"))
@@ -99,7 +101,7 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.window.move({ workspace = "special:mag
 
 -- Move between workspaces using keyboard keys
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

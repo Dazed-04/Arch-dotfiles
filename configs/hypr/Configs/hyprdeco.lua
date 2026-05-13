@@ -7,7 +7,7 @@ hl.config({
 		border_size = 2,
 
 		col = {
-			active_border = { colors = { colors.active_border, "rgba(00ff99ee)" }, angle = 45 },
+			active_border = colors.active_border,
 			inactive_border = colors.inactive_border,
 		},
 
@@ -97,5 +97,12 @@ hl.config({
 		force_default_wallpaper = 0,
 		disable_hyprland_logo = true,
 		vrr = 2,
+	},
+})
+
+hl.config({
+	binds = {
+		workspace_back_and_forth = true,
+		hide_special_on_workspace_change = true,
 	},
 })

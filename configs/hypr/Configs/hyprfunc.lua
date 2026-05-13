@@ -75,12 +75,40 @@ hl.device({
 --- Gestures ---
 ----------------
 
+-- Pinch in to zoom in
+hl.gesture({
+	fingers = 2,
+	direction = "pinchin",
+	action = "cursorZoom",
+	zoom_level = "1.1",
+	mode = "live",
+})
+
+-- Pinch out to zoom out
+hl.gesture({
+	fingers = 2,
+	direction = "pinchout",
+	action = "cursorZoom",
+	zoom_level = "0.9",
+	mode = "live",
+})
+
+-- move between workspaces
 hl.gesture({
 	fingers = 3,
-	direction = "left",
+	direction = "horizontal",
+	mods = "SUPER",
 	action = "workspace",
 })
 
+-- scroll within layout
+hl.gesture({
+	fingers = 3,
+	direction = "horizontal",
+	action = "scroll_move",
+})
+
+-- open app launcher
 hl.gesture({
 	fingers = 3,
 	direction = "up",
@@ -89,6 +117,15 @@ hl.gesture({
 	end,
 })
 
+-- switch to Full screen
+hl.gesture({
+	fingers = 3,
+	direction = "up",
+	mods = "SUPER",
+	action = "fullscreen",
+})
+
+-- open music workspace
 hl.gesture({
 	fingers = 3,
 	direction = "down",
@@ -97,10 +134,17 @@ hl.gesture({
 	end,
 })
 
---gesture = 3, left, dispatcher, workspace, e+1
---gesture = 3, right, dispatcher, workspace, e-1
---gesture = 3, up, dispatcher, exec, "$HOME/.local/bin/myScripts/utilities/menu_launcher.sh"
---gesture = 3, down, dispatcher, exec, "$HOME/.config/hypr/scripts/toggleMusic.sh"
+-- switch to Float
+hl.gesture({
+	fingers = 3,
+	direction = "down",
+	mods = "SUPER",
+	action = function()
+		hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+		hl.dispatch(hl.dsp.window.resize({ x = 1200, y = 800 }))
+		hl.dispatch(hl.dsp.window.center())
+	end,
+})
 
 -------------------
 --- PERMISSIONS ---
@@ -142,18 +186,18 @@ hl.gesture({
 -------------------------------------------
 
 -- Environment-variables needed for Nvidia GPU
--- hl.env("LIBVA_DRIVER_NAME",        "nvidia")
--- hl.env("__GLX_VENDOR_LIBRARY_NAME, "nvidia")
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 -- hl.env("GBM_BACKEND",               "nvidia-drm")
 
 -- To enable native Wayland support for most electron apps
---env = ELECTORN_OZONE_PLATFORM_HINT, auto
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
 -- To enable hardware video acceleration
 hl.env("NVD_BACKEND", "direct")
 
 -- To disable GSYNC
--- export __GL_GSYNC_ALLOWED=0
+hl.env("__GL_GSYNC_ALLOWED", "0")
 
 -- Qt style override
 hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")

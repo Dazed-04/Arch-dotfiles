@@ -3,8 +3,8 @@
 caching = false
 
 [templates.hyprcolors]
-input_path = "~/.config/matugen/templates/hypr/hyprcolor.conf"
-output_path = "~/.config/hypr/Configs/hyprcolor.conf"
+input_path = "~/.config/matugen/templates/hypr/hyprcolor.lua"
+output_path = "~/.config/hypr/Configs/hyprcolor.lua"
 
 [templates.kitty]
 input_path = "~/.config/matugen/templates/kitty/kittycolors.conf"

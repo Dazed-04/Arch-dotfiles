@@ -182,6 +182,7 @@ hl.window_rule({
 	center = true,
 	decorate = true,
 	size = { 1536, 864 },
+	stay_focused = true,
 })
 
 -- Video Player Rules
@@ -348,7 +349,7 @@ hl.window_rule({
 		title = "^(Local Services).*",
 	},
 	float = true,
-	size = { 400, 360 },
+	size = { 460, 360 },
 	move = { 470, 180 },
 	pin = true,
 	stay_focused = true,
@@ -493,7 +494,7 @@ hl.window_rule({
 		class = "cmake-gui",
 	},
 	float = true,
-	size = { 1000, 800 },
+	size = { 1000, 700 },
 	center = true,
 	decorate = true,
 	opacity = "0.7 0.7",
@@ -507,7 +508,7 @@ hl.window_rule({
 		title = "^(Bulk Rename).*",
 	},
 	float = true,
-	size = { 1000, 800 },
+	size = { 1000, 700 },
 	center = true,
 	decorate = true,
 	opacity = "0.7 0.7",
@@ -520,7 +521,7 @@ hl.window_rule({
 		class = "qt5ct",
 	},
 	float = true,
-	size = { 1000, 800 },
+	size = { 1000, 700 },
 	center = true,
 	decorate = true,
 	opacity = "0.7 0.7",
@@ -533,7 +534,7 @@ hl.window_rule({
 		class = "qt6ct",
 	},
 	float = true,
-	size = { 1000, 800 },
+	size = { 1000, 700 },
 	center = true,
 	decorate = true,
 	opacity = "0.7 0.7",
@@ -547,7 +548,7 @@ hl.window_rule({
 	workspace = "special:music",
 	center = true,
 	decorate = true,
-	opacity = "0.7 0.7",
+	opacity = "0.6 0.7",
 })
 
 -- Global are you sure confirm windows
