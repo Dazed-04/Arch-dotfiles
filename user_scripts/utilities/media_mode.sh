@@ -1,16 +1,18 @@
 #!/bin/bash
-OBS_PASS=$(cat "$HOME/.config/hypr/.obs-secret" | tr -d '[:space:]')
+OBS_PASS=$(cat "${HOME}/.config/hypr/.obs-secret" | tr -d '[:space:]')
 
 start_recording() {
   local scene="$1"
   if ! pgrep -x obs >/dev/null; then
-    hyprctl dispatch 'hl.dsp.exec_cmd("obs", { rules = "[workspace 8 silent]" })'
+    hyprctl dispatch 'hl.dsp.exec_cmd("obs")'
     notify-send "OBS" "Starting OBS, please wait..."
-    sleep 5
+    sleep 2
+    hyprctl dispatch 'hl.dsp.window.tag({ tag = "obs-script", window = "activewindow" })'
     local retries=0
     while ! obs-cmd --websocket "obsws://localhost:4455/${OBS_PASS}" scene list &>/dev/null; do
-      sleep 1
+      sleep 2
       ((retries++))
+      notify-send "DEBUG" "Retry $retries"
       if [[ $retries -ge 10 ]]; then
         notify-send "OBS" "Failed to connect to OBS WebSocket"
         return 1
