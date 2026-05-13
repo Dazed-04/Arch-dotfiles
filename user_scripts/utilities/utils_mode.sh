@@ -28,7 +28,8 @@ fi
 case "$1" in
 *"Hyprpicker")
   pkill rofi
-  sleep 0.5 && hyprpicker -a -q >/dev/null
+  sleep 0.5 && hyprpicker -a -q >/dev/null 2>&1 &
+  disown
   ;;
 *"Night Light"*)
   pkill rofi
@@ -61,7 +62,8 @@ case "$1" in
   ;;
 *"System Monitor"*)
   pkill rofi
-  "$HOME/.local/bin/myScripts/utilities/btop.sh"
+  nohup bash "$HOME/.local/bin/myScripts/utilities/btop.sh" >/dev/null 2>&1 &
+  disown
   ;;
 *"Power Saving"*)
   pkill rofi

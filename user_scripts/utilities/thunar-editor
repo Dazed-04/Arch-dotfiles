@@ -3,4 +3,4 @@
 kitty --class thunar-nvim -e nvim "$@"
 
 # 2. Once nvim closes, use hyprctl to force focus back to Thunar
-hyprctl dispatch focuswindow class:thunar
+hyprctl dispatch "hl.dsp.window.focus({ window = 'class:thunar' })"

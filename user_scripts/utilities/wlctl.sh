@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if hyprctl clients | grep -q 'class: wlctl'; then
-  hyprctl dispatch closewindow class:wlctl
+  hyprctl dispatch "hl.dsp.window.close({ window = 'class:wlctl' })"
 else
-  rfkill unblock wifi
-  kitty --class wlctl wlctl
+  rfkill unblock bluetooth
+  hyprctl dispatch "hl.dsp.exec_raw('kitty --class wlctl wlctl')"
 fi
