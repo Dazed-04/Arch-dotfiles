@@ -98,6 +98,7 @@ hl.gesture({
 	fingers = 3,
 	direction = "horizontal",
 	mods = "SUPER",
+	scale = 0.5,
 	action = "workspace",
 })
 

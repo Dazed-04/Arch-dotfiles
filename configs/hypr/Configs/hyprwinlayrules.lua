@@ -70,13 +70,6 @@ hl.window_rule({
 	stay_focused = true,
 })
 
--- OBS rules
-hl.window_rule({
-	name = "obs-workspace",
-	match = { initial_class = "com.obsproject.Studio" },
-	workspace = "8 silent",
-})
-
 -- Xdg Desktop Portal Rules
 hl.window_rule({
 	name = "float-xdg-desktop-portal-gtk",
