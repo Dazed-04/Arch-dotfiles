@@ -56,7 +56,7 @@ hl.window_rule({
 	decorate = true,
 })
 
--- Satty rules
+-- Satty Rules
 hl.window_rule({
 	name = "float-satty",
 	match = {
@@ -68,6 +68,20 @@ hl.window_rule({
 	center = true,
 	decorate = true,
 	stay_focused = true,
+})
+
+-- Obs Preview Window Rules
+hl.window_rule({
+	name = "float-obs-preview",
+	match = {
+		class = "com.obsproject.Studio",
+		title = ".*Video Capture Device.*",
+	},
+	float = true,
+	pin = true,
+	size = { 400, 300 },
+	no_focus = true,
+	move = "monitor_w-410 monitor_h-310",
 })
 
 -- Xdg Desktop Portal Rules

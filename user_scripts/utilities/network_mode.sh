@@ -1,5 +1,4 @@
 #!/bin/bash
-source "$HOME/.local/bin/myScripts/utilities/utility_submenus.sh"
 OBS_PASS=$(cat "$HOME/.config/hypr/.obs-secret")
 
 # Get dynamic labels
