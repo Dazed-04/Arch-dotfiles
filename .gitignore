@@ -1,6 +1,7 @@
 # hyprland ignores
 configs/hypr/.current_wallpaper
 configs/hypr/.obs-secret
+configs/hypr/Configs/.harper-dictionary.txt
 
 # yt-x ignores
 configs/yt-x/*.json
