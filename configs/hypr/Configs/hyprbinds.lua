@@ -8,6 +8,7 @@ local blur = "bash $HOME/.config/hypr/scripts/changeBlur.sh"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal or "kitty"))
+---@diagnostic disable-next-line: unused-local
 local closeWindowBind = hl.bind(mainMod .. " + K", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_raw(menu))
@@ -77,8 +78,8 @@ hl.bind(
 	hl.dsp.exec_raw("bash $HOME/.local/bin/myScripts/screenshots/screenshot.sh --fullscreen")
 ) -- fullscreen
 
--- Switch workspaces with mainMod + [0-9]
--- Move active window to a workspace with mainMod + SHIFT + [0-9]
+-- Switch workspaces with mainMod + [0–9]
+-- Move active window to a workspace with mainMod + SHIFT + [0–9]
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))

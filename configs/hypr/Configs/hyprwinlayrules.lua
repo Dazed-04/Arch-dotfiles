@@ -111,7 +111,7 @@ hl.window_rule({
 	stay_focused = true,
 })
 
--- Gimp pdf viewer
+-- Gimp PDF viewer
 hl.window_rule({
 	name = "float-gimp-pdf",
 	match = {
@@ -410,7 +410,7 @@ hl.window_rule({
 	opacity = "0.7 0.7",
 })
 
--- Qt test uitility rules
+-- Qt test utility rules
 hl.window_rule({
 	name = "float-qt-test",
 	match = {
@@ -611,7 +611,7 @@ hl.window_rule({
 	float = true,
 })
 
--- Force Hyprland's authentication dialog to float true and center
+-- Force Hyprland authentication dialog to float true and center
 -- hl.window_rule(){
 --   name = "float-hyprpolkitagent",
 --   match = {

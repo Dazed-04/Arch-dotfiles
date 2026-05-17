@@ -6,6 +6,10 @@ caching = false
 input_path = "~/.config/matugen/templates/hypr/hyprcolor.lua"
 output_path = "~/.config/hypr/Configs/hyprcolor.lua"
 
+[templates.hyprcolor]
+input_path = "~/.config/matugen/templates//hypr/hyprcolor.conf"
+output_path = "~/.config/hypr/hyprcolor.conf"
+
 [templates.kitty]
 input_path = "~/.config/matugen/templates/kitty/kittycolors.conf"
 output_path = "~/.config/kitty/kittycolors.conf"

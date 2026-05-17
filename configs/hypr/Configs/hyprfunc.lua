@@ -36,7 +36,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -- waybar")
 	hl.exec_cmd("uwsm app -- playerctld")
 	hl.exec_cmd("uwsm app -- hypridle")
-	--hl.exec_cmd("uwsm app -- swaync")
+	--hl.exec_cmd("uwsm app –- swaync")
 end)
 
 -------------
@@ -171,10 +171,10 @@ hl.gesture({
 
 -- Set them in ~/.config/uwsm/env & env-hyprland
 -- In env put majority of environment variables
--- In env-hyprland put hyprland related environment variables (cursors, themes etc)
+-- In env-hyprland put hyprland related environment variables (cursors, themes etc.)
 
 -- See https://wiki.hypr.land/Configuring/Environment-variables/
---hl.env("XDG_CURRENT_DESTOP",  "Hyprland")
+--hl.env("XDG_CURRENT_DESKTOP",  "Hyprland")
 --hl.env("XDG_SESSION_TYPE",    "wayland")
 --hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 --hl.env("HYPRCURSOR_THEME",    "rose-pine-hyprcursor")
@@ -191,7 +191,7 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 -- hl.env("GBM_BACKEND",               "nvidia-drm")
 
--- To enable native Wayland support for most electron apps
+-- To enable native Wayland support for most Electron apps
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
 -- To enable hardware video acceleration
@@ -204,5 +204,5 @@ hl.env("__GL_GSYNC_ALLOWED", "0")
 hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env("QT_STYLE_OVERRIDE", "kvantum")
 
--- Obs wayland support
+-- Obs Wayland support
 hl.env("OBS_USE_EGL", "1")

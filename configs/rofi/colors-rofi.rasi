@@ -3,13 +3,13 @@
     background: #131318bf;
     
     /* Use on-surface for the main text so it always contrasts with the background */
-    foreground: #e4e1e9;
+    foreground: #e5e1e9;
     
     /* Use primary for the 'selected' bar so it stands out */
-    selected-normal-background: #bbc3ff;
+    selected-normal-background: #c5c0ff;
     
     /* Use on-primary for text inside the selected bar so it's readable */
-    selected-active-background: #232c61;
+    selected-active-background: #2e2960;
     
     /* Use error for alerts */
     selected-urgent-background: #ffb4ab;
