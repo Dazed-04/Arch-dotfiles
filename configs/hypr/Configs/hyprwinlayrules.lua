@@ -11,7 +11,7 @@
 hl.window_rule({
 	name = "float-thunar",
 	match = {
-		class = "thunar",
+		class = "Thunar",
 	},
 	float = true,
 	size = { 1000, 700 },
@@ -518,7 +518,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "float-bulk-rename",
 	match = {
-		class = "thunar",
+		class = "Thunar",
 		title = "^(Bulk Rename).*",
 	},
 	float = true,
@@ -562,7 +562,7 @@ hl.window_rule({
 	workspace = "special:music",
 	center = true,
 	decorate = true,
-	opacity = "0.6 0.7",
+	opacity = "0.7 0.6",
 })
 
 -- Global are you sure confirm windows
