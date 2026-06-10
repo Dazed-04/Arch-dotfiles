@@ -1,12 +1,14 @@
 /*DARK_PURPLE*/
-@import '../../.config/waybar/colors-waybar.css';
+@import "../../.config/waybar/colors-waybar.css";
 
 @define-color main-color @color15;
 
 * {
   all: unset;
   /*this is really important to isolate waybar from gtk*/
-  font: bold 14px "Iosevka Nerd Font Propo";
+  font:
+    bold 14px "Iosevka Nerd Font Propo",
+    "Noto Sans CJK JP";
   font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
   border: none;
   border-radius: 0;
@@ -136,7 +138,6 @@ tooltip label {
   border-radius: 10px;
 }
 
-
 #custom-menu,
 #custom-power {
   padding: 0px 8px;
@@ -145,7 +146,6 @@ tooltip label {
   border-radius: 5px;
   color: lighter(@main-color);
 }
-
 
 #clock {
   padding: 0px 8px;

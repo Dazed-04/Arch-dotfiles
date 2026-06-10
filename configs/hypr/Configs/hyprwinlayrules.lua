@@ -277,7 +277,6 @@ hl.window_rule({
 	size = { "(monitor_w * 0.25)", "(monitor_h * 0.3)" },
 	move = { 350, 42 },
 	pin = true,
-	stay_focused = true,
 	decorate = true,
 	opacity = "0.7 0.7",
 })
@@ -352,6 +351,7 @@ hl.window_rule({
 	size = { 600, 350 },
 	move = { 500, 195 },
 	pin = true,
+	stay_focused = true,
 	decorate = true,
 	opacity = "0.7 0.7",
 })
