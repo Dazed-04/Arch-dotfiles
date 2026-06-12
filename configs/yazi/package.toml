@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "1db18bb"
-hash = "eff8ff12fa4e5f035a10d8aeeb4c258d"
+rev = "598cdb6"
+hash = "7b625412411be411153886894d9acaf"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-paste"
-rev = "1db18bb"
+rev = "598cdb6"
 hash = "3f8d49413bc8691b4c652eb417a20178"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "1db18bb"
+rev = "598cdb6"
 hash = "9c7987da2d2a2120dac33abb64132004"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "49f5ab7"
-hash = "6e3b5e58f985cc2d625e0030dc35b1b2"
+rev = "a6d30a1"
+hash = "579fe44e64b655ce46eeb526e3332f55"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"

@@ -1,7 +1,7 @@
 --- @since 26.1.22
 
 local M = {}
-local is_yazi_nightly = ui.lines ~= nil
+local using_new_height_api = ui.lines ~= nil
 local const
 local utils
 local adobe
@@ -13,20 +13,20 @@ local none_media_preview
 const = require(".const")
 utils = require(".utils")
 
-if is_yazi_nightly then
-	ya.dbg("mediainfo", "Using yazi nightly")
-	adobe = require(".adobe-nightly")
-	audio = require(".audio-nightly")
-	image = require(".image-nightly")
-	video = require(".video-nightly")
-	none_media_preview = require(".none-media-preview-nightly")
+if using_new_height_api then
+	ya.dbg("mediainfo", "Using yazi version >= 26.5.6")
+	adobe = require(".adobe-stable")
+	audio = require(".audio-stable")
+	image = require(".image-stable")
+	video = require(".video-stable")
+	none_media_preview = require(".none-media-preview-stable")
 else
-	ya.dbg("mediainfo", "Using yazi stable")
+	ya.dbg("mediainfo", "Using yazi version <= 26.1.22")
 	adobe = require(".adobe-old")
 	audio = require(".audio-old")
 	image = require(".image-old")
 	video = require(".video-old")
-	none_media_preview = require(".none-media-preview")
+	none_media_preview = require(".none-media-preview-old")
 end
 
 function M:peek(job)

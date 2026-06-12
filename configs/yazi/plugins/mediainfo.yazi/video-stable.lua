@@ -1,44 +1,8 @@
---- @since 26.1.22
+--- @since 26.5.6
 
 local M = {}
 local const = require(".const")
 local utils = require(".utils")
-
-local function get_cover_layers(job)
-	local cache = ya.file_cache({ file = job.file, skip = 0 })
-	if not cache then
-		return {}
-	end
-	local covers = utils.get_state("f" .. tostring(cache))
-	if covers and type(covers) == "table" then
-		return covers
-	end
-	local output, err = Command("ffprobe"):arg({
-		"-v",
-		"error",
-		"-select_streams",
-		"v",
-		"-show_entries",
-		"stream=index:stream_disposition=attached_pic",
-		"-of",
-		"json",
-		tostring(job.file.path or job.file.cache or job.file.url.path or job.file.url),
-	}):output()
-	if err or not output then
-		return {}
-	end
-	covers = {}
-	local data = ya.json_decode(output.stdout)
-	if type(data.streams) == "table" then
-		for _, stream in ipairs(data.streams) do
-			if stream.disposition and stream.disposition.attached_pic then
-				covers[#covers + 1] = stream.index
-			end
-		end
-	end
-	utils.set_state("f" .. tostring(cache), covers)
-	return covers
-end
 
 function M:peek(job)
 	local preload_status, preload_err = self:preload(job)
@@ -47,8 +11,12 @@ function M:peek(job)
 		return
 	end
 
-	local cache_img_url = ya.file_cache(job)
-
+	local cache_img_url = ya.file_cache({
+		skip = job.skip > 90 and 90 or job.skip,
+		args = job.args,
+		file = job.file,
+		area = job.area,
+	})
 	local cache_img_url_no_skip = ya.file_cache({ file = job.file, skip = 0 })
 
 	local no_metadata = job.args.no_metadata
@@ -79,38 +47,74 @@ function M:peek(job)
 
 			local iter = output:gmatch("[^\n]*")
 			local str = iter()
-
+			local opt = { ansi = true, tab_size = rt.preview.tab_size, wrap = rt.preview.wrap, width = max_width }
 			while str ~= nil do
 				local next_str = iter()
 				local label, value = str:match("(.*[^ ])  +: (.*)")
+
 				local line
 				if label then
 					if not const.skip_labels[label] then
-						line = ui.Line({
-							ui.Span(label .. ": "):style(ui.Style():fg("reset"):bold()),
-							ui.Span(value):style(th.spot.tbl_col or ui.Style():fg("blue")),
-						})
+						line = label .. ": " .. value
 					end
 				elseif str ~= "General" then
-					line = ui.Line({ ui.Span(str):style(th.spot.title or ui.Style():fg("green")) })
+					line = str
 				end
 
 				if line then
-					local line_height = ui.height
-							and ui.height(str, { width = max_width, ansi = true, wrap = rt.preview.wrap })
-						or (math.max(1, is_wrap and math.ceil(ui.width(line) / max_width) or 1))
-					if next_str == nil and line_height == 1 then
-						EOF_mediainfo = true
+					local wrapped = ui.lines(line, opt)
+					local line_height = #wrapped
+					local from = 1
+					local to = math.min(line_height, mediainfo_job_skip + limit - last_line)
+
+					local total_rendered_text_len = 1
+					local total_label_rendered_len = 1
+					local label_total_len = label and utf8.len(label .. ": ") or 0
+					for j = from, to do
+						local current_line_components = {}
+						local wrapped_line_len = wrapped[j]:width() or 0
+						local wrapped_raw =
+							utils.utf8_sub(line, total_rendered_text_len, total_rendered_text_len + wrapped_line_len)
+						wrapped_line_len = utf8.len(wrapped_raw)
+						total_rendered_text_len = total_rendered_text_len + wrapped_line_len
+
+						if last_line + 1 > mediainfo_job_skip then
+							local label_raw = label_total_len - total_label_rendered_len <= 0 and ""
+								or utils.utf8_sub(wrapped_raw, 1, label_total_len - total_label_rendered_len)
+							local label_raw_len = utf8.len(label_raw)
+							if label_raw_len > 0 then
+								table.insert(
+									current_line_components,
+									ui.Span(label_raw):style(ui.Style():fg("reset"):bold())
+								)
+								total_label_rendered_len = total_label_rendered_len + label_raw_len
+								wrapped_raw = wrapped_raw:gsub("^" .. utils.is_literal_string(label_raw), "", 1)
+							end
+							if total_label_rendered_len >= label_total_len then
+								local value_raw = wrapped_raw
+								table.insert(
+									current_line_components,
+									ui.Span(value_raw or ""):style(
+										label and (th.spot.tbl_col or ui.Style():fg("blue"))
+											or (th.spot.title or ui.Style():fg("green"))
+									)
+								)
+							end
+							table.insert(lines, ui.Line(current_line_components))
+							-- last_line = last_line + 1
+						else
+							total_label_rendered_len = total_label_rendered_len + total_rendered_text_len
+						end
+						last_line = last_line + 1
+						if next_str == nil and not wrapped[j + 1] then
+							EOF_mediainfo = true
+						end
+						if last_line >= mediainfo_job_skip + limit then
+							last_line = mediainfo_job_skip + limit
+							EOF_mediainfo = false
+							break
+						end
 					end
-					if (last_line + line_height) > mediainfo_job_skip then
-						table.insert(lines, line)
-					end
-					if (last_line + line_height) >= mediainfo_job_skip + limit then
-						last_line = mediainfo_job_skip + limit
-						EOF_mediainfo = false
-						break
-					end
-					last_line = last_line + line_height
 				end
 				str = next_str
 			end
@@ -120,17 +124,7 @@ function M:peek(job)
 
 	if not no_metadata then
 		if EOF_mediainfo and #lines == 0 and mediainfo_job_skip > 0 then
-			local covers = get_cover_layers(job)
-			local cover_index = math.floor(
-				math.max(
-					1,
-					utils.get_state(const.STATE_KEY.units)
-							and (math.abs(job.skip / utils.get_state(const.STATE_KEY.units)))
-						or 0
-				)
-			)
-
-			if not covers[cover_index] then
+			if job.skip > 90 then
 				ya.emit("peek", {
 					math.max(0, (job.skip - (utils.get_state(const.STATE_KEY.units) or 0))),
 					only_if = job.file.url,
@@ -173,8 +167,8 @@ function M:peek(job)
 			})
 		end
 	end
-	utils.force_render()
 
+	utils.force_render()
 	local rendered_img_rect = cache_img_url
 			and fs.cha(cache_img_url)
 			and ya.image_show(
@@ -188,6 +182,14 @@ function M:peek(job)
 			)
 		or nil
 	local image_height = rendered_img_rect and rendered_img_rect.h or 0
+
+	-- NOTE: Workaround case video.lua doesn't doesn't generate preview image because of `skip` overflow video duration
+	if not rendered_img_rect then
+		local prev_image_height = utils.get_state(const.STATE_KEY.prev_image_height)
+		image_height = prev_image_height and prev_image_height[tostring(cache_img_url_no_skip)] or 0
+	else
+		utils.set_state(const.STATE_KEY.prev_image_height, { [tostring(cache_img_url_no_skip)] = image_height })
+	end
 
 	-- Handle image preload error
 	if preload_err then
@@ -221,90 +223,19 @@ end
 function M:preload(job)
 	local cmd = "mediainfo"
 	local err_msg = ""
-	local is_valid_utf8_path = utils.is_valid_utf8(tostring(job.file.path or job.file.cache or job.file.url))
 
-	-- NOTE: Preload image
+	-- NOTE: Preload image from video
 
-	local cache_img_url = ya.file_cache(job)
-	local cache_img_url_cha = cache_img_url and fs.cha(cache_img_url)
+	local cache_img_status, video_preload_err = require("video"):preload({
+		skip = job.skip > 90 and 90 or job.skip,
+		args = job.args,
+		file = job.file,
+		area = job.area,
+	})
 
-	-- NOTE: Only generate preview image when cache image is not exist
-	if cache_img_url and (not cache_img_url_cha or cache_img_url_cha.len <= 0) then
-		local units = utils.get_state(const.STATE_KEY.units)
-		local covers = get_cover_layers(job)
-		local cover_index = covers[1] or 0
-		if units ~= nil then
-			cover_index = math.floor(math.max(1, math.abs(job.skip / units)))
-			if not covers[cover_index] then
-				cover_index = math.max(0, #covers - 1)
-			end
-		end
-		local qv = 31 - math.floor(rt.preview.image_quality * 0.3)
-		local audio_preload_output, audio_preload_err = Command("ffmpeg"):arg({
-			"-v",
-			"error",
-			"-threads",
-			1,
-			"-i",
-			tostring(job.file.path or job.file.cache or job.file.url.path or job.file.url),
-			"-map",
-			string.format("0:v:%d?", cover_index),
-			"-an",
-			"-sn",
-			"-dn",
-			"-vframes",
-			1,
-			"-q:v",
-			qv,
-			"-vf",
-			string.format("scale=-1:'min(%d,ih)':flags=fast_bilinear", rt.preview.max_height / 2),
-			"-f",
-			"image2",
-			"-y",
-			tostring(cache_img_url),
-		}):output()
-		-- NOTE: Some audio types doesn't have cover image -> error ""
-		if audio_preload_err then
-			ya.dbg("mediainfo", audio_preload_err)
-			err_msg = err_msg
-				.. string.format(
-					"Failed to start `%s`.\n Error: %s\n",
-					"ffmpeg",
-					tostring(audio_preload_err or (audio_preload_output and audio_preload_output.stderr or ""))
-				)
-		elseif
-			audio_preload_output
-			and type(audio_preload_output.stderr) == "string"
-			and audio_preload_output.stderr:find("does not contain any stream")
-		then
-			ya.dbg("mediainfo", audio_preload_output and audio_preload_output.stderr)
-			cache_img_url_cha, _ = fs.cha(cache_img_url)
-			if cache_img_url_cha then
-				fs.remove("file", Url(cache_img_url))
-			end
-			-- NOTE: Workaround case audio has no cover image. Prevent regenerate preview image
-			audio_preload_output, audio_preload_err = require("magick")
-				.with_limit()
-				:arg({
-					"-size",
-					"1x1",
-					"canvas:none",
-					string.format("PNG32:%s", cache_img_url),
-				})
-				:output()
-			if
-				(audio_preload_output and audio_preload_output.stderr ~= nil and audio_preload_output.stderr ~= "")
-				or audio_preload_err
-			then
-				ya.dbg("mediainfo", audio_preload_err or (audio_preload_output and audio_preload_output.stderr))
-				err_msg = err_msg
-					.. string.format(
-						"Failed to start `%s`.\n Error: %s\n",
-						"magick",
-						tostring(audio_preload_err or (audio_preload_output and audio_preload_output.stderr or ""))
-					)
-			end
-		end
+	if not cache_img_status and video_preload_err then
+		ya.dbg("mediainfo", video_preload_err)
+		err_msg = err_msg .. string.format("Failed to start `%s`.\n Do you have `%s` installed?\n", "ffmpeg", "ffmpeg")
 	end
 
 	-- NOTE: Get mediainfo and save to cache folder
@@ -316,6 +247,7 @@ function M:preload(job)
 	end
 
 	local output, err
+	local is_valid_utf8_path = utils.is_valid_utf8(tostring(job.file.path or job.file.cache or job.file.url))
 	if is_valid_utf8_path then
 		output, err = Command(cmd)
 			:arg({ tostring(job.file.path or job.file.cache or job.file.url.path or job.file.url) })
