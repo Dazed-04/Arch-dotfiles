@@ -14,7 +14,7 @@ import glob
 CPU_ICON_GENERAL = ""
 HISTORY_FILE = "/tmp/waybar_cpu_history.pkl"
 NAME_COL_WIDTH = 26
-GUTTER = " " * 10
+GUTTER = " " * 2
 
 # ---------------------------------------------------
 # THEME & COLORS
@@ -188,17 +188,17 @@ pwr_tt = c(f"{cpu_power:.1f} W", p_clr) if p_act else f"{cpu_power:.1f} W"
 # ---------------------------------------------------
 
 tooltip_lines = []
-separator = f"<span>{'─' * 20}</span>"
+separator = f"<span>{'─' * 35}</span>"
 tooltip_lines.append(
-    f"<span foreground='{COLORS['green']}'> {CPU_ICON_GENERAL}   CPU  -  {cpu_name}</span>"
+    f"<span foreground='{COLORS['green']}'> {CPU_ICON_GENERAL}  CPU - {cpu_name}</span>"
 )
 tooltip_lines.append(separator)
 
 cpu_rows = [
-    (" 󱎫 ", f" Clock Speed   :  {curr_f:.2f} GHz / {max_f:.2f} GHz"),
-    ("  ", f" Temperature  :  {temp_tt}"),
-    ("  ", f" Power             :  {pwr_tt}"),
-    (" 󰓅 ", f" Utilization      :  {util_tt}"),
+    (" 󱎫", f"Clock Speed : {curr_f:.2f} / {max_f:.2f} GHz"),
+    (" ", f"Temperature : {temp_tt}"),
+    (" ", f"Power       : {pwr_tt}"),
+    (" 󰓅", f"Utilization : {util_tt}"),
 ]
 
 for icon, text_row in cpu_rows:
@@ -208,7 +208,7 @@ for icon, text_row in cpu_rows:
 # Die Visualization
 substrate_color = t_clr if t_act else COLORS["cyan"]
 border_color = COLORS["white"]
-die_pad = "  " * 3
+die_pad = "  " * 4
 
 tooltip_lines.append("")
 tooltip_lines.append(f"{die_pad} {c('╭──┘└──────┘⠿└──────┘└──╮', border_color)}")
@@ -247,7 +247,7 @@ for title, data, is_proc in [
     ("Active Cores (10 min Avg):", avg_per_core, False),
     ("  Top Current Processes:", None, True),
 ]:
-    tooltip_lines.append(f"\n{separator}\n           {title}\n")
+    tooltip_lines.append(f"\n{separator}\n    {title}\n")
     if is_proc:
         try:
             ps = (
@@ -265,19 +265,20 @@ for title, data, is_proc in [
                 val, name = float(parts[0]), parts[1][:15]
                 clr = get_stealth_color(val)
                 val_str = c(f"{val:>5.1f}%", clr) if clr else f"{val:>5.1f}%"
-                tooltip_lines.append(f"• {name + ':':<18} {GUTTER}{GUTTER} {val_str}")
+                tooltip_lines.append(
+                    f" • {name + ':':<18}{GUTTER}{GUTTER}{GUTTER}{val_str}"
+                )
         except:
             pass
     else:
         sorted_cores = sorted(enumerate(data), key=lambda x: x[1], reverse=True)[:3]
         for i, u in sorted_cores:
             clr = get_stealth_color(u)
-            u_str = c(f"{u:>5.1f}% avg", clr) if clr else f"{u:>5.1f}% avg"
+            u_str = c(f"{u:>5.1f}%", clr) if clr else f"{u:>5.1f}%"
             tooltip_lines.append(
-                f"• Core {i + 1:02}:{'':<10} {GUTTER}{GUTTER}  {u_str}"
+                f" • Core {i + 1:02}:{'':<10}{GUTTER}{GUTTER}{GUTTER}{u_str}"
             )
 
-tooltip_lines.append(f"\n{separator}\n󰍽  LMB : Btop")
 
 # ---------------------------------------------------
 # OUTPUT
@@ -290,11 +291,11 @@ die_block = tooltip_lines[die_start : die_end + 1]
 footer_block = tooltip_lines[die_end + 1 :]
 
 final_tooltip = (
-    f"<span font='JetBrains Mono' size='11000'>"
+    f"<span font='JetBrainsMono Nerd Font' size='11000'>"
     f"{'\n'.join(info_block)}\n"
     f"</span>"
     f"{'\n'.join(die_block)}\n"
-    f"<span font='JetBrains Mono' size='11000'>"
+    f"<span font='JetBrainsMono Nerd Font' size='11000'>"
     f"{'\n'.join(footer_block)}"
     f"</span>"
 )
