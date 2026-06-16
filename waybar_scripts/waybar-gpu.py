@@ -223,19 +223,12 @@ else:
         usage_p = (p["mem"] / vram_total * 100) if vram_total > 0 else 0
         if usage_p >= 75:
             tooltip_lines.append(
-                f"<span {text_font} foreground='{COLORS['yellow']}'>{LEFT_PAD}• {name:<17}     󰘚 {p['mem']}MB</span>"
+                f"<span {text_font} foreground='{COLORS['yellow']}'>{LEFT_PAD} • {name:<17}     󰘚 {p['mem']}MB</span>"
             )
         else:
             tooltip_lines.append(
-                f"<span {text_font}>{LEFT_PAD}• {name:<17}     󰘚 {p['mem']}MB</span>"
+                f"<span {text_font}>{LEFT_PAD} • {name:<17}     󰘚 {p['mem']}MB</span>"
             )
-
-tooltip_lines.extend(
-    [
-        f"{LEFT_PAD}{SOLID_LINE}{LEFT_PAD}",
-        f"<span {text_font}>{LEFT_PAD}󰍽 | LMB: Btop</span>",
-    ]
-)
 
 print(
     json.dumps(
