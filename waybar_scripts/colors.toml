@@ -1,19 +1,19 @@
 [colors.normal]
 # Background and subtle elements
-black          = "#131318"
-white          = "#e5e1e9"
-bright_black   = "#928f99"
+black          = "#121318"
+white          = "#e3e1e9"
+bright_black   = "#90909a"
 
 # Main data colors
 # Using 'error' for Red, 'tertiary' for Yellow, 'primary' for Green
 red            = "#ffb4ab"
-yellow         = "#eab9d1"
-green          = "#c4c0ff"
-cyan           = "#c7c4dc"
-blue           = "#434078"
+yellow         = "#e4bad9"
+green          = "#b7c4ff"
+cyan           = "#c2c5dd"
+blue           = "#364479"
 
 # Accent colors
-magenta        = "#5b5891"
+magenta        = "#4e5b92"
 bright_red     = "#93000a"
-bright_green   = "#e3dfff"
-bright_yellow  = "#ffd8e9"
+bright_green   = "#dde1ff"
+bright_yellow  = "#ffd7f4"

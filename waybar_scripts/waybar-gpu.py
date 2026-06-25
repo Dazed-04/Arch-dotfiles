@@ -9,8 +9,7 @@ import pathlib
 # ---------------------------------------------------
 GPU_ICON = "󰢮"
 LEFT_PAD = " "
-# Decreased size from 49 to 35 for a slimmer profile
-SOLID_LINE = "─" * 42
+SOLID_LINE = "─" * 43
 
 # ---------------------------------------------------
 # THEME & COLORS
@@ -216,7 +215,7 @@ tooltip_lines = [
 ]
 
 if not gpu_procs:
-    tooltip_lines.append(f"<span {text_font}>{LEFT_PAD} • No active processes</span>")
+    tooltip_lines.append(f"<span {text_font}>{LEFT_PAD}• No active processes</span>")
 else:
     for p in gpu_procs[:3]:
         name = (p["name"][:15] + "..") if len(p["name"]) > 16 else p["name"]
