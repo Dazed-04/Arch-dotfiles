@@ -23,9 +23,12 @@ newline = true
 
 [[blocks.segments]]
 template = '{{.Icon}} '
-foreground = 'default'
+foreground = 'p:blue'
 type = 'os'
 style = 'plain'
+
+[blocks.segments.options]
+arch = "󰣇"
 
 [[blocks.segments]]
 template = '{{ .UserName }}@{{ .HostName }} '

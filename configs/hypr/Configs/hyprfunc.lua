@@ -17,10 +17,10 @@ hl.monitor({
 -- See https://wiki.hypr.land/Configuring/Keywords/
 
 -- Set programs that you use
-terminal = "kitty"
-fileManager = "thunar"
-menu = "bash $HOME/.local/bin/myScripts/utilities/menu_launcher.sh"
-music = "bash $HOME/.config/hypr/scripts/toggleMusic.sh"
+Terminal = "kitty"
+FileManager = "thunar"
+Menu = "bash $HOME/.local/bin/myScripts/utilities/menu_launcher.sh"
+Music = "bash $HOME/.config/hypr/scripts/toggleMusic.sh"
 
 -----------------
 --- AUTOSTART ---
@@ -80,6 +80,7 @@ hl.gesture({
 	fingers = 2,
 	direction = "pinchin",
 	action = "cursorZoom",
+	---@diagnostic disable-next-line: assign-type-mismatch
 	zoom_level = "1.1",
 	mode = "live",
 })
@@ -89,6 +90,7 @@ hl.gesture({
 	fingers = 2,
 	direction = "pinchout",
 	action = "cursorZoom",
+	---@diagnostic disable-next-line: assign-type-mismatch
 	zoom_level = "0.9",
 	mode = "live",
 })
@@ -114,7 +116,7 @@ hl.gesture({
 	fingers = 3,
 	direction = "up",
 	action = function()
-		hl.exec_cmd(menu)
+		hl.exec_cmd(Menu)
 	end,
 })
 
@@ -131,7 +133,7 @@ hl.gesture({
 	fingers = 3,
 	direction = "down",
 	action = function()
-		hl.exec_cmd(music)
+		hl.exec_cmd(Music)
 	end,
 })
 

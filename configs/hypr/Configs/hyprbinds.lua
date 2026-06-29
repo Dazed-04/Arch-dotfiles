@@ -7,13 +7,13 @@ local music = "bash $HOME/.config/hypr/scripts/toggleMusic.sh"
 local blur = "bash $HOME/.config/hypr/scripts/changeBlur.sh"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal or "kitty"))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(Terminal or "kitty"))
 ---@diagnostic disable-next-line: unused-local
 local closeWindowBind = hl.bind(mainMod .. " + K", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_raw(menu))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_raw(Menu))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_raw(blur))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(FileManager))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.resize({ x = 1200, y = 800 }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.center())
