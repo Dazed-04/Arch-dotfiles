@@ -481,7 +481,8 @@ hl.window_rule({
 	match = {
 		class = "org.pwmt.zathura",
 	},
-	float = true,
+	--float = true,
+	float = false,
 	size = { 1000, 800 },
 	center = true,
 	decorate = true,
