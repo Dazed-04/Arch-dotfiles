@@ -49,6 +49,7 @@ return {
         if #vim.fn.getqflist() == 0 then
           vim.cmd("cclose")
           vim.cmd("split | terminal ./%:t:r")
+          vim.bo.buflisted = false
         end
       end, { nargs = 0 })
 
@@ -70,8 +71,19 @@ return {
         if #vim.fn.getqflist() == 0 then
           vim.cmd("cclose")
           vim.cmd("split | terminal ./%:t:r")
+          vim.bo.buflisted = false
         end
       end, { nargs = 0 })
+
+      -- ============================================================
+      -- Allow closing terminals using just q
+      -- ============================================================
+      vim.api.nvim_create_autocmd("TermOpen", {
+        desc = "Quick quit for terminal buffers with q",
+        callback = function(args)
+          vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = args.buf, silent = true })
+        end,
+      })
     end,
   },
 }

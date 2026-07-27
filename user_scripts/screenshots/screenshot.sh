@@ -14,10 +14,10 @@ pkill slurp && exit 0
 
 MODE="${1:-smart}"
 EDIT="${2}"
-PROCESSING="${3:-slurp -w 0 -d}"
 
 get_rectangles() {
-  local active_workspace=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .activeWorkspace.id')
+  local active_workspace
+  active_workspace=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .activeWorkspace.id')
   hyprctl monitors -j | jq -r --arg ws "$active_workspace" '.[] | select(.activeWorkspace.id == ($ws | tonumber)) | "\(.x),\(.y) \((.width / .scale) | floor)x\((.height / .scale) | floor)"'
   hyprctl clients -j | jq -r --arg ws "$active_workspace" '.[] | select(.workspace.id == ($ws | tonumber)) | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"'
 }
@@ -52,7 +52,7 @@ case "$MODE" in
   # If the selection area is L*W < 20, assume trying to select whichever window or output
   # it was inside of to prevent accidental 2px Screenshots
   if [[ "$SELECTION" =~ ^([0-9]+),([0-9]+)[[:space:]]([0-9]+)x([0-9]+)$ ]]; then
-    if ((${BASH_REMATCH[3]} * ${BASH_REMATCH[4]} < 20)); then
+    if ((BASH_REMATCH[3] * BASH_REMATCH[4] < 20)); then
       click_x="${BASH_REMATCH[1]}"
       click_y="${BASH_REMATCH[2]}"
 

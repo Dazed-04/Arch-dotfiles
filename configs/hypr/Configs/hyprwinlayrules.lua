@@ -179,10 +179,18 @@ hl.window_rule({
 		title = "Qalculate!",
 	},
 	float = true,
-	center = true,
 	decorate = true,
-	size = { 600, 800 },
-	opacity = "0.7 0.7",
+	size = { 400, 400 },
+	opacity = "0.8 0.8",
+})
+
+-- Rnote Rules
+hl.window_rule({
+	name = "float-Rnote",
+	match = {
+		class = "com.github.flxzt.rnote",
+	},
+	opacity = "0.8 0.8",
 })
 
 -- Image viewer rules
