@@ -486,7 +486,7 @@ hl.window_rule({
 	size = { 1000, 800 },
 	center = true,
 	decorate = true,
-	opacity = "0.7 0.7",
+	opacity = "0.8 0.8",
 })
 
 -- Java Monitoring Console rules

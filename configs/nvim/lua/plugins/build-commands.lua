@@ -64,7 +64,7 @@ return {
 
       vim.api.nvim_create_user_command("Cpprun", function()
         vim.cmd("compiler gcc")
-        vim.opt.makeprg = "g++ -Wall -g -std=c++21 -o %:t:r %"
+        vim.opt.makeprg = "g++ -Wall -g -std=c++20 -o %:t:r %"
         vim.cmd("make")
         vim.cmd("copen")
         if #vim.fn.getqflist() == 0 then
