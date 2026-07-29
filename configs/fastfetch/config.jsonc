@@ -63,7 +63,8 @@
     },
     {
       "key": "│ {#35}󰏖 package  {#keys}│",
-      "type": "packages",
+      "type": "command",
+      "text": "~/.cache/fastfetch/pkgcount.sh",
     },
     {
       "key": "├────────────┤",

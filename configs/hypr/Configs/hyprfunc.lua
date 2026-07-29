@@ -36,6 +36,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -- waybar")
 	hl.exec_cmd("uwsm app -- playerctld")
 	hl.exec_cmd("uwsm app -- hypridle")
+	hl.exec_cmd("sleep 3 && uwsm app -- keepassxc")
 	--hl.exec_cmd("uwsm app –- swaync")
 end)
 
