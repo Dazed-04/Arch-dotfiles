@@ -8,7 +8,7 @@ return {
             connections = {
               {
                 driver = "oracle",
-                dataSourceName = "scott/tiger@localhost:1521/XEPDB1",
+                dataSourceName = "complaint_app/..Compl@int_Pass..@localhost:1521/XEPDB1",
               },
             },
           },

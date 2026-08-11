@@ -4,10 +4,10 @@ hl.config({
 	general = {
 		gaps_in = 3,
 		gaps_out = 8,
-		border_size = 2,
+		border_size = 1,
 
 		col = {
-			active_border = colors.active_border,
+			-- active_border = colors.active_border,
 			inactive_border = colors.inactive_border,
 		},
 
@@ -25,7 +25,7 @@ hl.config({
 		inactive_opacity = 0.9,
 
 		dim_inactive = true,
-		dim_strength = 0.2,
+		dim_strength = 0.15,
 
 		border_part_of_window = true,
 
@@ -33,7 +33,7 @@ hl.config({
 			enabled = true,
 			range = 4,
 			render_power = 3,
-			color = 0x1a1a1aee,
+			color = "0x1a1a1aee",
 		},
 
 		blur = {
