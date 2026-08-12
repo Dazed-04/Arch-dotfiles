@@ -80,6 +80,7 @@ hl.device({
 hl.gesture({
 	fingers = 2,
 	direction = "pinchin",
+	mods = "SUPER",
 	action = "cursorZoom",
 	---@diagnostic disable-next-line: assign-type-mismatch
 	zoom_level = "1.1",
@@ -90,6 +91,7 @@ hl.gesture({
 hl.gesture({
 	fingers = 2,
 	direction = "pinchout",
+	mods = "SUPER",
 	action = "cursorZoom",
 	---@diagnostic disable-next-line: assign-type-mismatch
 	zoom_level = "0.9",
