@@ -12,7 +12,7 @@ get_thumb_path() {
 
 # === CONFIGURATION ===
 # Directories
-wallpaperDir="$HOME/Pictures/Wallpapers"
+wallpaperDir="$HOME/Pictures/wallpapers"
 themesDir="$HOME/.config/rofi/launcher-themes"
 cacheDir="$HOME/.cache/wallpaper-selector"
 listCache="$cacheDir/wallpaper_list.txt"
