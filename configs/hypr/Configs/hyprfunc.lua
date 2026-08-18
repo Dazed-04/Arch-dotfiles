@@ -36,7 +36,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -- waybar")
 	hl.exec_cmd("uwsm app -- playerctld")
 	hl.exec_cmd("uwsm app -- hypridle")
-	hl.exec_cmd("sleep 3 && uwsm app -- keepassxc")
+	hl.exec_cmd("sleep 1 && uwsm app -- keepassxc")
 	--hl.exec_cmd("uwsm app –- swaync")
 end)
 
@@ -182,10 +182,12 @@ hl.gesture({
 --hl.env("XDG_CURRENT_DESKTOP",  "Hyprland")
 --hl.env("XDG_SESSION_TYPE",    "wayland")
 --hl.env("XDG_SESSION_DESKTOP", "Hyprland")
---hl.env("HYPRCURSOR_THEME",    "rose-pine-hyprcursor")
---hl.env("XCURSOR_THEME",       "BreezeX-RosePine-Linux")
---hl.env("XCURSOR_SIZE",        "27")
---hl.env("HYPRCURSOR_SIZE",     "27")
+
+-- Environment-variables for themes
+hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
+hl.env("XCURSOR_THEME", "BreezeX-RosePine-Linux")
+hl.env("XCURSOR_SIZE", "27")
+hl.env("HYPRCURSOR_SIZE", "27")
 
 -------------------------------------------
 --- Rules to make apps work with nvidia ---
